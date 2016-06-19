@@ -1,0 +1,163 @@
+Starting Dynare (version 4.4.3).
+Starting preprocessing of the model file ...
+Found 11 equation(s).
+Evaluating expressions...done
+Computing static model derivatives:
+ - order 1
+Computing dynamic model derivatives:
+ - order 1
+Processing outputs ...done
+Preprocessing completed.
+Starting MATLAB/Octave computing.
+
+STEADY-STATE RESULTS:
+
+xV      		 2.31144e-05
+piV     		 0.00124075
+iV      		 1.26387
+ypotV   		 0
+rpotV   		 1.26263
+lumptax 		 -1.4475e-09
+conshk  		 0
+govshk  		 0
+debtg   		 -1.4475e-07
+rV      		 1.26263
+yV      		 2.31144e-05
+
+EIGENVALUES:
+         Modulus             Real        Imaginary
+
+             0.9              0.9                0
+             0.9              0.9                0
+           1.275            1.275                0
+             199             -199                0
+           792.9            792.9                0
+       2.424e+16       -2.424e+16                0
+             Inf              Inf                0
+
+
+There are 5 eigenvalue(s) larger than 1 in modulus 
+for 4 forward-looking variable(s)
+
+The rank condition ISN'T verified!
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print_info', '/Applications/Dynare/4.4.3/matlab/print_info.m', 42)" style="font-weight:bold">print_info</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/print_info.m',42,0)">line 42</a>)
+Blanchard Kahn conditions are not satisfied: no stable
+equilibrium
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stoch_simul', '/Applications/Dynare/4.4.3/matlab/stoch_simul.m', 98)" style="font-weight:bold">stoch_simul</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/stoch_simul.m',98,0)">line 98</a>)
+    print_info(info, options_.noprint, options_);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 238)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',238,0)">line 238</a>)
+info = stoch_simul(var_list_);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)
+evalin('base',fname) ;
+} 
+dynare nkm.mod
+
+Configuring Dynare ...
+[mex] Generalized QZ.
+[mex] Sylvester equation solution.
+[mex] Kronecker products.
+[mex] Sparse kronecker products.
+[mex] Local state space iteration (second order).
+[mex] Bytecode evaluation.
+[mex] k-order perturbation solver.
+[mex] k-order solution simulation.
+[mex] Quasi Monte-Carlo sequence (Sobol).
+[mex] Markov Switching SBVAR.
+
+Starting Dynare (version 4.4.3).
+Starting preprocessing of the model file ...
+Found 11 equation(s).
+Evaluating expressions...done
+Computing static model derivatives:
+ - order 1
+Computing dynamic model derivatives:
+ - order 1
+Processing outputs ...done
+Preprocessing completed.
+Starting MATLAB/Octave computing.
+
+[Warning: The file
+'/Applications/Dynare/4.4.3/matlab/dynare.m' could not be
+cleared because it contains MATLAB code that is currently
+executing.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 7)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',7,0)">line 7</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)] 
+[Warning: The file '/Users/denismaciel/Google Drive/2.
+Semester/Akt FF der Makro/fiscalfreelunch/nkm.m' could not
+be cleared because it contains MATLAB code that is
+currently executing.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 7)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',7,0)">line 7</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)] 
+[Warning: The file
+'/Applications/Dynare/4.4.3/matlab/dynare.m' could not be
+cleared because it contains MATLAB code that is currently
+executing.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 7)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',7,0)">line 7</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)] 
+[Warning: The file '/Users/denismaciel/Google Drive/2.
+Semester/Akt FF der Makro/fiscalfreelunch/nkm.m' could not
+be cleared because it contains MATLAB code that is
+currently executing.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 7)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',7,0)">line 7</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)] 
+[Warning: The file
+'/Applications/Dynare/4.4.3/matlab/dynare.m' could not be
+cleared because it contains MATLAB code that is currently
+executing.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 7)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',7,0)">line 7</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)] 
+[Warning: The file '/Users/denismaciel/Google Drive/2.
+Semester/Akt FF der Makro/fiscalfreelunch/nkm.m' could not
+be cleared because it contains MATLAB code that is
+currently executing.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 7)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',7,0)">line 7</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)] 
+
+STEADY-STATE RESULTS:
+
+xV      		 2.31144e-05
+piV     		 0.00124075
+iV      		 1.26387
+ypotV   		 0
+rpotV   		 1.26263
+lumptax 		 -1.4475e-09
+conshk  		 0
+govshk  		 0
+debtg   		 -1.4475e-07
+rV      		 1.26263
+yV      		 2.31144e-05
+
+EIGENVALUES:
+         Modulus             Real        Imaginary
+
+             0.9              0.9                0
+             0.9              0.9                0
+           1.275            1.275                0
+             199             -199                0
+           792.9            792.9                0
+       2.424e+16       -2.424e+16                0
+             Inf              Inf                0
+
+
+There are 5 eigenvalue(s) larger than 1 in modulus 
+for 4 forward-looking variable(s)
+
+The rank condition ISN'T verified!
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('print_info', '/Applications/Dynare/4.4.3/matlab/print_info.m', 42)" style="font-weight:bold">print_info</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/print_info.m',42,0)">line 42</a>)
+Blanchard Kahn conditions are not satisfied: no stable
+equilibrium
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('stoch_simul', '/Applications/Dynare/4.4.3/matlab/stoch_simul.m', 98)" style="font-weight:bold">stoch_simul</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/stoch_simul.m',98,0)">line 98</a>)
+    print_info(info, options_.noprint, options_);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('nkm', '/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m', 237)" style="font-weight:bold">nkm</a> (<a href="matlab: opentoline('/Users/denismaciel/Google Drive/2. Semester/Akt FF der Makro/fiscalfreelunch/nkm.m',237,0)">line 237</a>)
+info = stoch_simul(var_list_);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('dynare', '/Applications/Dynare/4.4.3/matlab/dynare.m', 180)" style="font-weight:bold">dynare</a> (<a href="matlab: opentoline('/Applications/Dynare/4.4.3/matlab/dynare.m',180,0)">line 180</a>)
+evalin('base',fname) ;
+} 

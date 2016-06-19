@@ -10,7 +10,7 @@
 
 // List endogenous variables
 var
-xV piV iV ypotV rpotV sigma_hat kappap phi_mc lumptax taxsub conshk govshk debtg rV yV;
+xV piV iV ypotV rpotV lumptax conshk govshk debtg rV yV;
 
 
 // List exogenous shock(s)
@@ -20,9 +20,12 @@ eps_con eps_gov;
 
 // List structural parameters and assign values
 parameters
-beta alpha sigma chi shrgy nuc psip rho gam_xgap gam_pi phi_tax thetap;
+beta alpha sigma chi shrgy nuc psip rho gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap taxsub rhat;
 
 
+
+
+//////////////////////////////////////////////////////////////////////////////
 // Initialize Parameters
 
 beta    =  0.995  ;        // discount factor
@@ -44,13 +47,25 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.1    ;        // steady-state labor share
 
+sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
+
+phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha)); //phi_mc = lam_mrs+lam_mpl;
+
+kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc; //kappap
+
+taxsub= shrgy/thetap; //financing government spending
+
+rhat = 1/(beta-1); //steaty state real interest rate
 
 
+
+//////////////////////////////////////////////////////////////////////////////
 // Write down system of equilibrium equations
+
 model;
 
 //New Keynesian IS equation
-xV= xV(+1)- sigma_hat*(iV-piV(+1) - rpotV);
+xV= xV(+1) - sigma_hat*(iV-piV(+1) - rpotV);
 
 
 //Phillips curve
@@ -69,36 +84,17 @@ ypotV= (1/phi_mc*sigma_hat)*(shrgy*govshk+(1-shrgy)*nuc*conshk);
 rpotV= (1/sigma_hat)*(1 - (1/(phi_mc*sigma_hat))*(shrgy*(govshk-govshk(+1))+(1-shrgy)*nuc*(conshk-conshk(+1))));
 
 
-//sigma_hat
-sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
-
-//kappap
-kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;
-                                                // Calvo-Yun contract structure
-//phi_mc
-//lam_mrs = chi/(1-alpha) + 1/sigma_hat;          // slope of MRS schedule (how supply real wage varies with output -
-                                                // Fish elasticity of labor supply - interest sensitivity of aggregate demand
-//lam_mpl = alpha/(1-alpha);                      // slope of MPL schedule (how demand real wage varies with output in abs value)
-                                                // labor share of production
-//phi_mc = lam_mrs+lam_mpl;
-phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
-
 // government budget constraint
-debtg=(1+rV)*debtg(-1)+shrgy*govshk-taxsub*thetap*(yV+phi_mc*xV)-lumptax;
+debtg=(1+rhat)*debtg(-1)+shrgy*govshk-taxsub*thetap*(yV+phi_mc*xV)-lumptax;
 
 //lump-sum tax (adjusts according to the reaction function)
 lumptax= phi_tax*debtg(-1);
-
-//financing government spending
-taxsub= shrgy/thetap;
-
 
 //real interes rate rV
 rV=iV-piV(+1);
 
 //output yV
 yV=xV+ypotV;
-
 
 // shock processes
 conshk= (1-rho)*conshk(-1)+eps_con;
@@ -130,9 +126,6 @@ rpotV=0;
 conshk=0;
 govshk=0;
 debtg=0;
-sigma_hat=0;
-kappap=0;
-phi_mc=0;
 lumptax=0;
 rV=0;
 yV=0;
@@ -147,15 +140,9 @@ check;
 
 //standard deviations of shocks
 shocks;
-var eps_con;
-periods 1:1;
-values 0.01;
-
-var eps_gov;
-periods 1:1;
-values 0.01; 
-end; 
+var eps_con = 1;
+var eps_gov = 1;
+end;
 
 //call stochastic simulation
-stoch_simul(order=1,irf=10); 
-
+stoch_simul(order=1,irf=100) xV piV iV ypotV rpotV lumptax conshk govshk debtg rV yV;

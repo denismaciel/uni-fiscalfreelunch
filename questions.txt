@@ -1,0 +1,29 @@
+#Questions to be answered
+
+* Is sigma_hat actually a parameter?
+
+
+(+1)
+
+* What are the forward looking variables?
+xV piV govshk conshk
+
+  
+    Fehlermeldung:
+    
+    EIGENVALUES:
+         Modulus             Real        Imaginary
+    
+             0.9              0.9                0
+             0.9              0.9                0
+           1.275            1.275                0
+             199             -199                0
+           792.9            792.9                0
+       2.424e+16       -2.424e+16                0
+             Inf              Inf                0
+    
+    
+    There are 5 eigenvalue(s) larger than 1 in modulus 
+    for 4 forward-looking variable(s)
+    
+    The rank condition ISN'T verified!
