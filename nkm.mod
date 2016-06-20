@@ -8,7 +8,6 @@
 
 //test
 //test2
-//Hallo
 
 // List endogenous variables
 var
