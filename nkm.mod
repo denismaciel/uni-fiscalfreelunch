@@ -6,7 +6,7 @@
 // monetary policy follow Taylor rule after exit
 // makes restrictive assumption that govt spending and taste shocks are AR1
 
-
+//test
 
 // List endogenous variables
 var
