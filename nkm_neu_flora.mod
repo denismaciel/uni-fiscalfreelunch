@@ -198,15 +198,15 @@ figure;
 //looping over all variables
 for jj=1:1:4
 subplot(2,2,jj);
-plot(1:40, irfs_psip1(jj,1:40), 'k');hold on; 
-plot(1:40, irfs_psip2(jj, 1:40), 'r--');
+plot(1:100, irfs_psip1(jj,1:100), 'k');hold on; 
+plot(1:100, irfs_psip2(jj,1:100), 'r--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
 legend('psip=0.8', 'psip=1'); //add legend
 end;
 
 figure;
 for ii=1:1:10
-	subplot(4,2,ii)
+	subplot(5,2,ii)
 	plot(1:20, oo_.endo_simul(ii,1:20));
 title(M_.endo_names(ii));
 end;
