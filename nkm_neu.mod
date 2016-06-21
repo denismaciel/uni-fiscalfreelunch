@@ -10,7 +10,7 @@
 
 // List endogenous variables
 var
-xV piV iV ypotV rpotV kappap conshk govshk debtg lumptax yV ;
+xV piV iV ypotV rpotV conshk govshk debtg lumptax yV ;
 
 
 // List exogenous shock(s)
@@ -21,7 +21,7 @@ eps_con eps_gov;
 // List structural parameters and assign values
 parameters
 beta alpha sigma chi shrgy nuc psip rho 
-gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc rbar taxsub sig_con;
+gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con;
 
 
 
@@ -38,7 +38,7 @@ nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
 psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration
 
-gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
+gam_xgap=  1000   	  ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
 gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
@@ -49,7 +49,7 @@ thetap  =  0.1    ;        // steady-state labor share   oder (1-alpha)
 
 sig_con =  10     ;        // Std of consumption taste shock(in percent?)  random value
 
-rbar= 1/beta -1   ;        // real interest rate
+rbar = 1/beta -1   ;        // real interest rate
 
 //sigma_hat
 sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
@@ -64,8 +64,17 @@ sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap
 phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
 
 
+//kappap
+kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;  // Calvo-Yun contract structure
+
+
+
 //financing government spending
 taxsub= shrgy/thetap;
+
+
+
+
 
 ///////////////////////////////////////////////////////
 // Write down system of equilibrium equations
@@ -90,8 +99,6 @@ ypotV= (1/phi_mc*sigma_hat)*(shrgy*govshk+(1-shrgy)*nuc*conshk);
 //Natural real interest rate
 rpotV= (1/sigma_hat)*(1 - (1/(phi_mc*sigma_hat))*(shrgy*(govshk-govshk(+1))+(1-shrgy)*nuc*(conshk-conshk(+1))));
 
-//kappap
-kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;  // Calvo-Yun contract structure
 
 //government budget constraint
 debtg=(1+rbar)*debtg(-1)+shrgy*govshk-taxsub*thetap*(yV+phi_mc*xV)-lumptax;
@@ -157,4 +164,3 @@ end;
 
 //call stochastic simulation
 stoch_simul(order=1,irf=20); 
-
