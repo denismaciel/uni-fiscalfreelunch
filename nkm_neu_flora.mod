@@ -36,7 +36,9 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration
+psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+//psis  =  1      ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
+//psis  =  0      ;        // Calvo price parameter - stickiness and contract duration: flexible prices
 
 gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
 gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
@@ -45,11 +47,15 @@ rho     =  0.1    ;        // AR(1) natural rate (preference and government shoc
 
 phi_tax =  0.01   ;        // tax rule parameter
 
-thetap  =  0.1    ;        // steady-state labor share   oder (1-alpha)
+thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  1000     ;        // Std of consumption taste shock(in percent?)  random value
+sig_con =  -10    ;        // Std of consumption taste shock(in percent?)  random value
 
-rbar = 1/beta -1   ;        // real interest rate
+rbar = (1/beta) -1  ;        // real interest rate
+
+//maxoperator ZLB
+pibar = 1.005;
+ibar = (pibar/beta) - 1;    //nominal nominal interest rate - duration of the liquidity trap depends solely on how lon rpotV remains below -ibar
 
 //sigma_hat
 sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
@@ -65,16 +71,12 @@ phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
 
 
 //kappap
-kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;  // Calvo-Yun contract structure
-
+kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
+//kappap*psip= (1-psip)*(1-psis*beta)*phi_mc    // multiply with psip to set psis=0 and get model with flexible prices
 
 
 //financing government spending
 taxsub= shrgy/thetap;
-
-//maxoperator ZLB
-pibar = 1.005;
-ibar = (pibar/beta) - 1;
 
 
 
@@ -92,7 +94,7 @@ piV= beta*piV(+1)+kappap*xV;
 
 
 //Taylor rule
-iV= max(0,gam_pi*piV+gam_xgap*xV);   //Taylor rule (subject to zero lower bound fehlt)
+iV= max(-ibar,gam_pi*piV+gam_xgap*xV);   //Taylor rule (subject to zero lower bound fehlt)
 
 
 //Potential output
@@ -122,6 +124,7 @@ conshk= (1-rho)*conshk(-1)+eps_con;
 govshk= (1-rho)*govshk(-1)+eps_gov;
 
 end;
+///////////////////////////////////////////////////////
 
 //exogenous evolution of g(t) and v(t)
 //rho_g1 = 0;
@@ -130,7 +133,7 @@ end;
 //rho_c2 = rho_v2;
 //shrgy = 0.2;
 
-//eps_gov_0= 1/shrgy = 1/0.2 = 5
+
 
 //if chi=2.5 and sigma =1, then this value gives a duration of the liquidity
 //trap of 8 quarters for psip=0.8
@@ -158,22 +161,60 @@ steady ;
 // Check stability conditions 
 check;
 
+//Running the code for different values of psip
+//psip=0.8 (set above)
 //standard deviations of shocks
-
-
 shocks;
 var eps_con;
 periods 1:1;
-values(sig_con);    //correct? 
+values(sig_con);  
 end; 
-
 
 //call stochastic simulation
 simul(periods=100); 
 
+//save irfs 
+irfs_psip1 = oo_.endo_simul;
+
+
+
+
+//Set different value for psip and run the model again
+psip = 1;
+
+//standard deviations of shocks
+shocks;
+var eps_con;
+periods 1:1;
+values(sig_con); 
+end;
+//stochastic simulation
+simul(periods=100); 
+
+//save irfs 
+irfs_psip2 = oo_.endo_simul;
+
+//Plotting the IRFS for xip=0.75 and xip=0.3 in the same plot
 figure;
-for ii=1:1:7
+//looping over all variables
+for jj=1:1:4
+subplot(2,2,jj);
+plot(1:40, irfs_psip1(jj,1:40), 'k');hold on; 
+plot(1:40, irfs_psip2(jj, 1:40), 'r--');
+title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
+legend('psip=0.8', 'psip=1'); //add legend
+end;
+
+figure;
+for ii=1:1:10
 	subplot(4,2,ii)
 	plot(1:20, oo_.endo_simul(ii,1:20));
 title(M_.endo_names(ii));
-end
+end;
+
+
+//var eps_gov;
+//periods 1:1;
+//values (1/shrgy)
+//eps_gov_0= 1/shrgy = 1/0.2 = 5
+

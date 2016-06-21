@@ -7,7 +7,7 @@
 // makes restrictive assumption that govt spending and taste shocks are AR1
 
 
-
+//test I
 // List endogenous variables
 var
 xV piV iV ypotV rpotV lumptax conshk govshk debtg rV yV;
