@@ -94,7 +94,7 @@ piV= beta*piV(+1)+kappap*xV;
 
 
 //Taylor rule
-iV= max(-ibar,gam_pi*piV+gam_xgap*xV);   //Taylor rule (subject to zero lower bound fehlt)
+iV= max(-ibar,gam_pi*piV+gam_xgap*xV);   //Taylor rule subject to zero lower bound
 
 
 //Potential output
@@ -113,15 +113,14 @@ debtg=(1+rbar)*debtg(-1)+shrgy*govshk-taxsub*thetap*(yV+phi_mc*xV)-lumptax;
 lumptax= phi_tax*debtg(-1);
 
 
-//real interes rate rV
-//rV=iV-piV(+1);
-
 //output yV
 yV=xV+ypotV;
+
 
 // shock processes
 conshk= (1-rho)*conshk(-1)+eps_con;
 govshk= (1-rho)*govshk(-1)+eps_gov;
+
 
 end;
 ///////////////////////////////////////////////////////
@@ -137,7 +136,6 @@ end;
 
 //if chi=2.5 and sigma =1, then this value gives a duration of the liquidity
 //trap of 8 quarters for psip=0.8
-
 
 
 // Assign analytical steady state values as initial values
@@ -161,6 +159,8 @@ steady ;
 // Check stability conditions 
 check;
 
+
+
 //Running the code for different values of psip
 //psip=0.8 (set above)
 //standard deviations of shocks
@@ -169,14 +169,11 @@ var eps_con;
 periods 1:1;
 values(sig_con);  
 end; 
-
 //call stochastic simulation
 simul(periods=100); 
 
 //save irfs 
 irfs_psip1 = oo_.endo_simul;
-
-
 
 
 //Set different value for psip and run the model again
@@ -193,6 +190,8 @@ simul(periods=100);
 
 //save irfs 
 irfs_psip2 = oo_.endo_simul;
+
+
 
 //Plotting the IRFS for xip=0.75 and xip=0.3 in the same plot
 figure;
