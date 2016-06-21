@@ -10,7 +10,7 @@
 
 // List endogenous variables
 var
-xV piV iV ypotV rpotV conshk govshk debtg lumptax yV ;
+xV piV iV ypotV rpotV  debtg conshk govshk lumptax yV ;
 
 
 // List exogenous shock(s)
@@ -21,7 +21,7 @@ eps_con eps_gov;
 // List structural parameters and assign values
 parameters
 beta alpha sigma chi shrgy nuc psip rho 
-gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con;
+gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con pibar ibar;
 
 
 
@@ -36,10 +36,10 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration
+psip    =  1    ;        // Calvo price parameter - stickiness and contract duration
 
-gam_xgap=  1000   	  ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
-gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
+gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
+gam_pi  =  1.5   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -47,7 +47,7 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.1    ;        // steady-state labor share   oder (1-alpha)
 
-sig_con =  10     ;        // Std of consumption taste shock(in percent?)  random value
+sig_con =  1000     ;        // Std of consumption taste shock(in percent?)  random value
 
 rbar = 1/beta -1   ;        // real interest rate
 
@@ -72,6 +72,9 @@ kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;  // Calvo-Yun contract structure
 //financing government spending
 taxsub= shrgy/thetap;
 
+//maxoperator ZLB
+pibar = 1.005;
+ibar = (pibar/beta) - 1;
 
 
 
@@ -157,8 +160,8 @@ check;
 
 //standard deviations of shocks
 shocks;
-var eps_con= sig_con;
-var eps_gov= 1/shrgy;    //correct?
+var eps_con = sig_con;
+var eps_gov = 0;    //correct?
  
 end; 
 
