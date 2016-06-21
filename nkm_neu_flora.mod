@@ -36,12 +36,12 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+psip    =  1    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //psis  =  1      ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
 //psis  =  0      ;        // Calvo price parameter - stickiness and contract duration: flexible prices
 
-gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
-gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
+gam_xgap=  0.2    ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
+gam_pi  =  1.5    ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -49,7 +49,7 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  -10    ;        // Std of consumption taste shock(in percent?)  random value
+sig_con =  -100  ;        // Std of consumption taste shock(in percent?)  random value
 
 rbar = (1/beta) -1  ;        // real interest rate
 
@@ -71,8 +71,8 @@ phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
 
 
 //kappap
-kappap = ((1-psip)*(1-psip*beta)/psip)*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
-//kappap*psip= (1-psip)*(1-psis*beta)*phi_mc    // multiply with psip to set psis=0 and get model with flexible prices
+kappap = ((1-psip)*(1-beta*psip)/psip)*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
+//kappap*psip = (1-psip)*(1-beta*psip)*phi_mc    // multiply with psip to set psis=0 and get model with flexible prices
 
 
 //financing government spending
@@ -170,14 +170,14 @@ periods 1:1;
 values(sig_con);  
 end; 
 //call stochastic simulation
-simul(periods=100); 
+simul(periods=40); 
 
 //save irfs 
 irfs_psip1 = oo_.endo_simul;
 
 
 //Set different value for psip and run the model again
-psip = 1;
+psip = 0.8;
 
 //standard deviations of shocks
 shocks;
@@ -186,7 +186,7 @@ periods 1:1;
 values(sig_con); 
 end;
 //stochastic simulation
-simul(periods=100); 
+simul(periods=40); 
 
 //save irfs 
 irfs_psip2 = oo_.endo_simul;
@@ -196,10 +196,10 @@ irfs_psip2 = oo_.endo_simul;
 //Plotting the IRFS for xip=0.75 and xip=0.3 in the same plot
 figure;
 //looping over all variables
-for jj=1:1:4
-subplot(2,2,jj);
-plot(1:100, irfs_psip1(jj,1:100), 'k');hold on; 
-plot(1:100, irfs_psip2(jj,1:100), 'r--');
+for jj=1:1:10
+subplot(5,2,jj);
+plot(1:40, irfs_psip1(jj,1:40), 'k');hold on; 
+plot(1:40, irfs_psip2(jj, 1:40), 'r--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
 legend('psip=0.8', 'psip=1'); //add legend
 end;
