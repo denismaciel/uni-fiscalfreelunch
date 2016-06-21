@@ -36,10 +36,10 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-psip    =  1    ;        // Calvo price parameter - stickiness and contract duration
+psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration
 
 gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model 0.2)
-gam_pi  =  1.5   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
+gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -140,8 +140,8 @@ end;
 // Assign analytical steady state values as initial values
 initval;
 xV=0;
-piV=0.005;      
-iV=0.01;       
+piV=0;      
+iV=0;       
 ypotV=0;
 rpotV=0;
 debtg=0;
