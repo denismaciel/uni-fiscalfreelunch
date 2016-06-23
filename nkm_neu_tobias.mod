@@ -174,6 +174,8 @@ check;
     
 //xip=1 (set above)
 //standard deviations of shocks
+
+
 shocks;
 var eps_con;
 periods 1:1;
@@ -186,7 +188,7 @@ irfs_xip1 = oo_.endo_simul;
 
 
 //Set different value for xip and run the model again
-xip=1;
+xip=0.8;
 //standard deviations of shocks
 shocks;
 var eps_con;
