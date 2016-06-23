@@ -10,7 +10,7 @@
 
 // List endogenous variables
 var
-xV piV iV ypotV rpotV  debtg conshk govshk lumptax yV ;
+xV piV iV ypotV rpotV debtg conshk govshk lumptax yV rV;
 
 
 // List exogenous shock(s)
@@ -20,7 +20,7 @@ eps_con eps_gov;
 
 // List structural parameters and assign values
 parameters
-beta alpha sigma chi shrgy nuc psip rho 
+beta alpha sigma chi shrgy nuc xip rho 
 gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con pibar ibar;
 
 
@@ -36,12 +36,12 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-psip    =  0.8    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
-//psis  =  1      ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
-//psis  =  0      ;        // Calvo price parameter - stickiness and contract duration: flexible prices
+xip    =  1    ;          // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+//xip  =  1      ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
+//xip  =  0      ;        // Calvo price parameter - stickiness and contract duration: flexible prices
 
-gam_xgap=  0.2   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000)
-gam_pi  =  1.5    ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000)
+gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000)
+gam_pi  =  1000    ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -51,7 +51,7 @@ thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
 sig_con =  10000  ;         // Std of consumption taste shock(in percent?)  random value
 
-rbar = (1/beta) -1  ;        // real interest rate
+rbar = (1/beta) -1  ;      // steady state real interest rate
 
 //maxoperator ZLB
 pibar = 1.005;
@@ -73,8 +73,8 @@ phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
 
 
 //kappap
-kappap = ((1-psip)*(1-beta*psip)/psip)*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
-//kappap*psip = (1-psip)*(1-beta*psip)*phi_mc    // multiply with psip to set psis=0 and get model with flexible prices
+kappap = ((1-xip)*(1-beta*xip)/xip)*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
+//kappap*xip = (1-xip)*(1-beta*xip)*phi_mc    // multiply with xip to set psis=0 and get model with flexible prices
 
 
 //financing government spending
@@ -118,6 +118,9 @@ lumptax= phi_tax*debtg(-1);
 //output yV
 yV=xV+ypotV;
 
+// real interest rate rV
+rV=4*iV-piV(+1);
+
 
 // shock processes
 conshk= (1-rho)*conshk(-1)+eps_con;
@@ -137,7 +140,7 @@ end;
 
 
 //if chi=2.5 and sigma =1, then this value gives a duration of the liquidity
-//trap of 8 quarters for psip=0.8
+//trap of 8 quarters for xip=0.8
 
 
 // Assign analytical steady state values as initial values
@@ -161,26 +164,15 @@ steady ;
 // Check stability conditions 
 check;
 
-
-
-//Running the code for different values of psip
-//psip=0.8 (set above)
-//standard deviations of shocks
-shocks;
-var eps_con;
-periods 1:1;
-values(sig_con);  
-end; 
-//call stochastic simulation
-simul(periods=40); 
-
-//save irfs 
-irfs_psip1 = oo_.endo_simul;
-
-
-//Set different value for psip and run the model again
-psip = 0.8;
-
+// government spending shock
+//shocks;
+//var eps_gov;
+//periods 1:1;
+//values (1/shrgy);
+//end;
+///eps_gov_0= 1/shrgy = 1/0.2 = 5
+    
+//xip=1 (set above)
 //standard deviations of shocks
 shocks;
 var eps_con;
@@ -189,33 +181,40 @@ values(sig_con);
 end;
 //stochastic simulation
 simul(periods=40); 
-
 //save irfs 
-irfs_psip2 = oo_.endo_simul;
+irfs_xip1 = oo_.endo_simul;
+
+
+//Set different value for xip and run the model again
+xip=1;
+//standard deviations of shocks
+shocks;
+var eps_con;
+periods 1:1;
+values(sig_con); 
+end;
+//stochastic simulation
+simul(periods=40); 
+//save irfs 
+irfs_xip2 = oo_.endo_simul;
 
 
 
-//Plotting the IRFS for xip=0.75 and xip=0.3 in the same plot
+//Plotting the IRFS for xip=1 and xip=0.8 in the same plot
 figure;
 //looping over all variables
-for jj=1:1:10
-subplot(5,2,jj);
-plot(1:40, irfs_psip1(jj,1:40), 'k');hold on; 
-plot(1:40, irfs_psip2(jj, 1:40), 'r--');
+for jj=1:1:11
+subplot(6,2,jj);
+plot(1:40, irfs_xip1(jj,1:40), 'k');hold on; 
+plot(1:40, irfs_xip2(jj, 1:40), 'r--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
-legend('psip=0.8', 'psip=1'); //add legend
-end;
+legend('xip=1', 'xip=0.8'); //add legend
+end
 
 figure;
-for ii=1:1:10
-	subplot(5,2,ii)
+for ii=1:1:11
+	subplot(6,2,ii)
 	plot(1:20, oo_.endo_simul(ii,1:20));
 title(M_.endo_names(ii));
-end;
-
-
-//var eps_gov;
-//periods 1:1;
-//values (1/shrgy)
-//eps_gov_0= 1/shrgy = 1/0.2 = 5
+end
 
