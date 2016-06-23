@@ -36,12 +36,12 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip    =  1    ;          // Calvo price parameter - stickiness and contract duration: 5 quarter duration
-//xip  =  1      ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
-//xip  =  0      ;        // Calvo price parameter - stickiness and contract duration: flexible prices
+xip    =  1       ;          // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+//xip  =  1       ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
+//xip  =  0       ;        // Calvo price parameter - stickiness and contract duration: flexible prices
 
-gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000)
-gam_pi  =  1000    ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000)
+gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2)
+gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -164,12 +164,13 @@ steady ;
 // Check stability conditions 
 check;
 
+
 // government spending shock
-//shocks;
-//var eps_gov;
-//periods 1:1;
-//values (1/shrgy);
-//end;
+shocks;
+var eps_gov;
+periods 1:1;
+values (1/shrgy);
+end;
 ///eps_gov_0= 1/shrgy = 1/0.2 = 5
     
 //xip=1 (set above)
@@ -179,7 +180,7 @@ check;
 shocks;
 var eps_con;
 periods 1:1;
-values(sig_con); 
+values(0); 
 end;
 //stochastic simulation
 simul(periods=40); 
@@ -193,7 +194,7 @@ xip=0.8;
 shocks;
 var eps_con;
 periods 1:1;
-values(sig_con); 
+values(0); 
 end;
 //stochastic simulation
 simul(periods=40); 
@@ -220,3 +221,8 @@ for ii=1:1:11
 title(M_.endo_names(ii));
 end
 
+//plot variables
+figure;
+subplot(2,2,1)
+plot(govshk(1:20));
+title('govshk');
