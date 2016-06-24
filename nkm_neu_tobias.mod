@@ -30,7 +30,7 @@ gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con pibar
 
 beta    =  0.995  ;        // discount factor
 alpha   =  0.3    ;        // capital share, so (1-alpha) = labor share
-sigma   =  1      ;        // intertemporal elasticity of substitution in consumption
+sigma   =  0.2      ;        // intertemporal elasticity of substitution in consumption
 chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 
 shrgy   =  0.2    ;        // government share of steady-state output
@@ -49,7 +49,7 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  10000  ;         // Std of consumption taste shock(in percent?)  random value
+sig_con =  10  ;         // Std of consumption taste shock(in percent?)  random value
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
 
@@ -189,7 +189,7 @@ irfs_xip1 = oo_.endo_simul;
 
 
 //Set different value for xip and run the model again
-xip=0.8;
+sig_con=30;
 //standard deviations of shocks
 shocks;
 var eps_con;
@@ -208,10 +208,10 @@ figure;
 //looping over all variables
 for jj=1:1:11
 subplot(6,2,jj);
-plot(1:40, irfs_xip1(jj,1:40), 'k');hold on; 
+plot(1:40, irfs_xip1(jj,1:40), 'k');hold on;
 plot(1:40, irfs_xip2(jj, 1:40), 'r--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
-legend('xip=1', 'xip=0.8'); //add legend
+legend('sig_con = 10', 'sig_con = 30'); //add legend
 end
 
 figure;
