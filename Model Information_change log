@@ -1,0 +1,41 @@
+//last version of model
+nkm_neu_tobias
+
+
+
+//new changes
+-included rV  to plot change in real interest rate
+-found values to have a 8quarter liquidity trap (see last version)
+
+-observed the two diferent shocks when set other shock to 0
+
+
+//To do´s
+-Überprüfen der Gleichungen und Standardwerte
+
+-Include equation for spending multiplier
+
+-Grafiken erstellen für unterschiedliche Werte für xip, conshk, govshk, gamm    //Tipp: Codes von Jesper anschauen, dort Figure 1,2 & 3
+
+- create some subplots for analyzing specific variables
+
+-Anpassen von kappap um Wert xip=0 zuzulassen  (multiply with xip)
+
+-Logliniarizieren von Model
+
+-Arbeit schreiben
+
+
+//value setting
+//Variablen mit unsicherem Wert:
+
+gam_xgap [0.2 - 1000]
+gam_pi  [1.5 - 1000]
+
+xip [ 0, 0.8, 1]
+
+sig_con    arbitrarly high
+
+sig_gov = 1/shrgy  , different value
+
+
