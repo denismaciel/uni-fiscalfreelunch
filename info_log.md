@@ -1,0 +1,78 @@
+**Curren version**: nkm_neu_tobias
+__ 
+
+
+
+## New Changes
+- included rV  to plot change in real interest rate
+
+- found values to have a 8quarter liquidity trap (see last version)
+
+- observed the two diferent shocks when set other shock to 0
+
+## To-do's
+
+- Überprüfen der Gleichungen und Standardwerte
+
+- Include equation for spending multiplier
+
+- Grafiken erstellen für unterschiedliche Werte für xip, conshk, govshk, gamm    //Tipp: Codes von Jesper anschauen, dort Figure 1,2 & 3
+
+- create some subplots for analyzing specific variables
+
+- Anpassen von kappap um Wert xip=0 zuzulassen  (multiply with xip)
+
+- Logliniarizieren von Model
+
+
+## Value Setting
+//Variablen mit unsicherem Wert:
+
+``` js
+gam_xgap [0.2 - 1000]
+gam_pi  [1.5 - 1000]
+
+xip [ 0, 0.8, 1]
+
+sig_con  			//  arbitrarly high
+
+sig_gov = 1/shrgy  // different value
+````
+
+## Log 
+
+Denis:
+### 2016-06-24
+Problem: Different values of xip is not affecting the simulation
+Did not work:
+
+1. Changed the parameters of Taylor Rule to "normal" (0.2 and 1.5). Why: Maybe the inflation was not responding because CB was too aggressive.
+
+2. Maybe the code of the second simulation was not work. But it is. I tested changing the value of sig_con and and it had clear effects on the simulation.
+
+Worked: If you change the values of xip from 1 to 0.2 in the beginning of the code, inflation varies. The problem seems to be with the two simulations inside the same code. 
+
+In fact, the problem is with second simulation within the code. I simulated the model with two different values of alpha and it had no effects on the results. It seems that you can only change the __size__ of the shock for the double simulation to work. 
+
+
+It works only with sig_con because the only code that is rerun in the double simulation is the following:
+
+
+``` js
+//Set different value for xip and run the model again
+sig_con=1000;
+//standard deviations of shocks
+shocks;
+var eps_con;
+periods 1:1;
+values(sig_con); 
+end;
+//stochastic simulation
+simul(periods=40); 
+//save irfs 
+irfs_xip2 = oo_.endo_simul;
+```
+
+
+
+
