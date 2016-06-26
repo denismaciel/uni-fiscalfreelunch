@@ -165,22 +165,22 @@ steady ;
 check;
 
 
-// government spending shock
-shocks;
-var eps_gov;
-periods 1:1;
-values (1/shrgy);
-end;
-///eps_gov_0= 1/shrgy = 1/0.2 = 5
-    
-//xip=1 (set above)
-//standard deviations of shocks
+// // government spending shock
+// shocks;
+// var eps_gov;
+// periods 1:1;
+// values (1/shrgy);
+// end;
+// ///eps_gov_0= 1/shrgy = 1/0.2 = 5
+//
+// //xip=1 (set above)
+// //standard deviations of shocks
 
 
 shocks;
 var eps_con;
 periods 1:1;
-values(0); 
+values(sig_con); 
 end;
 //stochastic simulation
 simul(periods=40); 
@@ -189,12 +189,12 @@ irfs_xip1 = oo_.endo_simul;
 
 
 //Set different value for xip and run the model again
-xip=0.8;
+sig_con = 50000;
 //standard deviations of shocks
 shocks;
 var eps_con;
 periods 1:1;
-values(0); 
+values(sig_con); 
 end;
 //stochastic simulation
 simul(periods=40); 
@@ -211,18 +211,18 @@ subplot(6,2,jj);
 plot(1:40, irfs_xip1(jj,1:40), 'k');hold on; 
 plot(1:40, irfs_xip2(jj, 1:40), 'r--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
-legend('xip=1', 'xip=0.8'); //add legend
+legend('sig.con1', 'sig.con2'); //add legend
 end
 
-figure;
-for ii=1:1:11
-	subplot(6,2,ii)
-	plot(1:20, oo_.endo_simul(ii,1:20));
-title(M_.endo_names(ii));
-end
+// figure;
+// for ii=1:1:11
+// 	subplot(6,2,ii)
+// 	plot(1:20, oo_.endo_simul(ii,1:20));
+// title(M_.endo_names(ii));
+// end
 
-//plot variables
-figure;
-subplot(2,2,1)
-plot(govshk(1:20));
-title('govshk');
+// //plot variables
+// figure;
+// subplot(2,2,1)
+// plot(govshk(1:20));
+// title('govshk');
