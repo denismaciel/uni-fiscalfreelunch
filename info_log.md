@@ -25,8 +25,37 @@ __
 - Logliniarizieren von Model
 
 
+### How to get the code a plot with two values of xip
+
+1. Run the dynare file and in the end save the results by pasting the following code into MATLAB:
+
+```js 
+oo_1 = oo_
+
+save simul1 oo_1
+```
+
+2. Change the value of the variable in the source code, save and run it again. Then, paste the following into MATLAB
+
+```
+load simul1
+
+%%Plotting the IRFS for xip=1 and xip=0.8 in the same plot
+figure;
+
+for jj=1:1:11
+subplot(6,2,jj);
+plot(1:40, oo_1.endo_simul(jj,1:40), 'k');hold on;
+plot(1:40, oo_.endo_simul(jj, 1:40), 'r--');
+title(M_.endo_names(jj,:)); 
+legend('xip = 1', 'xip = 0.8');
+end
+```
+
+
+
+
 ## Value Setting
-//Variablen mit unsicherem Wert:
 
 ``` js
 gam_xgap [0.2 - 1000]
@@ -37,7 +66,7 @@ xip [ 0, 0.8, 1]
 sig_con  			//  arbitrarly high
 
 sig_gov = 1/shrgy  // different value
-````
+```
 
 ## Log 
 
