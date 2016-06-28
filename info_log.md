@@ -4,10 +4,10 @@ __
 
 ## Consultation Session
 2. How to calculate the fiscal multiplier? 
-3. Why do we have ackward values for new steady state? Why do we need such a huge shock to make the IFRS move?
+3. Why do we have ackward values for new steady state? Why do we need such a huge shock to make the IFRS move? DONE
 1. How to implement flex price scenario? xip = 0
-1. Why doesn't Flora's code work with our model?
-4. Taylor rule parameters 
+1. Why doesn't Flora's code work with our model? FUCK OFF
+4. Taylor rule parameters OK 
 
 - calculate and plot "dynamic" multiplier 
 
@@ -15,22 +15,14 @@ overview
 what we have done
 
 
-## New Changes
-- included rV  to plot change in real interest rate
-
-- found values to have a 8quarter liquidity trap (see last version)
-
-- observed the two diferent shocks when set other shock to 0
-
 ## To-do's
 
-- Überprüfen der Gleichungen und Standardwerte
+- Überprüfen der Gleichungen und Standardwerte OK
 
 - Include equation for spending multiplier
+- Find out the 8-quarter liquidity trap values (shock value)
 
 - Grafiken erstellen für unterschiedliche Werte für xip, conshk, govshk, gamm    //Tipp: Codes von Jesper anschauen, dort Figure 1,2 & 3
-
-- create some subplots for analyzing specific variables
 
 - Anpassen von kappap um Wert xip=0 zuzulassen  (multiply with xip)
 
@@ -63,8 +55,6 @@ title(M_.endo_names(jj,:));
 legend('xip = 1', 'xip = 0.8');
 end
 ```
-
-
 
 
 ## Value Setting
