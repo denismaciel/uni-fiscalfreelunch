@@ -172,11 +172,6 @@ periods 1:1;
 values (1);
 end;
 ///eps_gov_0= 1/shrgy = 1/0.2 = 5
-
-//xip=1 (set above)
-//standard deviations of shocks
-
-
 shocks;
 var eps_con;
 periods 1:1;
@@ -188,12 +183,12 @@ simul(periods=150);
 irfs_xip1 = oo_.endo_simul;
 
 
-// government spending shock
 
+//SECOND SIMULATION
 shocks;
 var eps_gov;
 periods 1:1;
-values (0);
+values (1.5);
 end;
 ///eps_gov_0= 1/shrgy = 1/0.2 = 5
 //stochastic simulation
@@ -208,9 +203,9 @@ figure;
 //looping over all variables
 for jj=1:1:11
 subplot(6,2,jj);
-plot(1:150, irfs_xip1(jj,1:150), 'k');hold on;
-plot(1:150, irfs_xip2(jj, 1:150), 'r--');hold on;
-plot(1:150, irfs_xip1(jj,1:150) - irfs_xip2(jj, 1:150), 'b--');
+plot(1:40, irfs_xip1(jj,1:40), 'k');hold on;
+plot(1:40, irfs_xip2(jj, 1:40), 'r--');hold on;
+plot(1:40, irfs_xip1(jj,1:40) - irfs_xip2(jj, 1:40), 'b--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
 legend('both shocks', 'Taste shock only', 'Government Shock only'); //add legend
 end
