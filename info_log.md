@@ -2,6 +2,18 @@
 __ 
 
 
+## Consultation Session
+2. How to calculate the fiscal multiplier? 
+3. Why do we have ackward values for new steady state? Why do we need such a huge shock to make the IFRS move?
+1. How to implement flex price scenario? xip = 0
+1. Why doesn't Flora's code work with our model?
+4. Taylor rule parameters 
+
+- calculate and plot "dynamic" multiplier 
+
+overview
+what we have done
+
 
 ## New Changes
 - included rV  to plot change in real interest rate

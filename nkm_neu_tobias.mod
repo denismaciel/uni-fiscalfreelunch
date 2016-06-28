@@ -36,12 +36,12 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip    =  1       ;          // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+xip    =  0.8       ;          // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //xip  =  1       ;        // Calvo price parameter - stickiness and contract duration: No inflation responses
 //xip  =  0       ;        // Calvo price parameter - stickiness and contract duration: flexible prices
 
-gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2)
-gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
+gam_xgap=  0.2   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2)
+gam_pi  =  1.5   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -49,7 +49,7 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  10000  ;         // Std of consumption taste shock(in percent?)  random value
+sig_con =  50  ;         // Std of consumption taste shock(in percent?)  random value
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
 
@@ -104,7 +104,7 @@ ypotV= (1/phi_mc*sigma_hat)*(shrgy*govshk+(1-shrgy)*nuc*conshk);
 
 
 //Natural real interest rate
-rpotV= (1/sigma_hat)*(1 - (1/(phi_mc*sigma_hat))*(shrgy*(govshk-govshk(+1))+(1-shrgy)*nuc*(conshk-conshk(+1))));
+rpotV= 1/sigma_hat * (1 - 1/(phi_mc*sigma_hat)) * ( shrgy*(govshk-govshk(+1)) + (1-shrgy)*nuc*(conshk-conshk(+1)) );
 
 
 //government budget constraint
@@ -165,40 +165,40 @@ steady ;
 check;
 
 
-// // government spending shock
-// shocks;
-// var eps_gov;
-// periods 1:1;
-// values (1/shrgy);
-// end;
-// ///eps_gov_0= 1/shrgy = 1/0.2 = 5
-//
-// //xip=1 (set above)
-// //standard deviations of shocks
+// government spending shock
+shocks;
+var eps_gov;
+periods 1:1;
+values (1);
+end;
+///eps_gov_0= 1/shrgy = 1/0.2 = 5
+
+//xip=1 (set above)
+//standard deviations of shocks
 
 
 shocks;
 var eps_con;
 periods 1:1;
-values(sig_con); 
+values(-sig_con); 
 end;
 //stochastic simulation
-simul(periods=40); 
+simul(periods=150); 
 //save irfs 
 irfs_xip1 = oo_.endo_simul;
 
 
-//Set different value for xip and run the model again
-sig_con = 50000;
-//standard deviations of shocks
+// government spending shock
+
 shocks;
-var eps_con;
+var eps_gov;
 periods 1:1;
-values(sig_con); 
+values (0);
 end;
+///eps_gov_0= 1/shrgy = 1/0.2 = 5
 //stochastic simulation
-simul(periods=40); 
-//save irfs 
+simul(periods=150);
+//save irfs
 irfs_xip2 = oo_.endo_simul;
 
 
@@ -208,10 +208,11 @@ figure;
 //looping over all variables
 for jj=1:1:11
 subplot(6,2,jj);
-plot(1:40, irfs_xip1(jj,1:40), 'k');hold on; 
-plot(1:40, irfs_xip2(jj, 1:40), 'r--');
+plot(1:150, irfs_xip1(jj,1:150), 'k');hold on;
+plot(1:150, irfs_xip2(jj, 1:150), 'r--');hold on;
+plot(1:150, irfs_xip1(jj,1:150) - irfs_xip2(jj, 1:150), 'b--');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
-legend('sig.con1', 'sig.con2'); //add legend
+legend('both shocks', 'Taste shock only', 'Government Shock only'); //add legend
 end
 
 // figure;
