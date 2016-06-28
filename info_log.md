@@ -72,6 +72,39 @@ sig_gov = 1/shrgy  // different value
 
 ## Log 
 
+### nkm_govmultiplier.mod
+Created this file to simulate different government responses
+
+- Set sig_con to 15 to get a ten-period liquidity trap
+- We simulate the model four times with four different values for government shock
+- What we can check with this model?
+	- That when the duration of the liquidity trap is shorter, the multiplier is smaller and vice-versa.
+	- That multiplier is constant as long we increase spending but DO NOT shorten the liquidity trap duration
+- To check the first result:
+	- set the values of shock in such a way that the LT of the first and second simulations have the same duration and that the third and fouth have equal duration but shorter than the first and second.
+	- compare `mul1` and `mul2` and see that  the simulations with shorter duration of the liquidity trap display a smaller multiplier,
+-  To check the second result:
+	- set the values of shock in such a way that the first, second and third simulations have the same duration.
+	- compare `mul1` and `mul15` and see that they have the same value.  
+
+- My suggestion of value
+```js 
+//First Result
+0.00
+0.03
+0.2
+0.22
+
+
+//Second Result: within the LT multplier is constant
+0.00
+0.03
+0.035
+
+//Fourth value does not play a role for this result
+
+```
+
 Denis:
 ### 2016-06-24
 Problem: Different values of xip is not affecting the simulation

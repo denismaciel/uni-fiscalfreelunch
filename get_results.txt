@@ -2,5 +2,5 @@
 
 
 % Calculates the duration of liquidity trap
-liq.trap.duration = sum(oo_.endo_simul(3,1:end) == -ibar); 
+liqduration = sum(oo_.endo_simul(3,1:end) == -ibar); 
 
