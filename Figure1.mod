@@ -44,12 +44,15 @@ irfs_gov2 = oo_.endo_simul;
 
 // plot liquidity duration, iV, rpot
 figure;
-plot(2:10,400* irfs_gov0 (5, 2:10), 'b')  ;hold on;
-plot(2:10,400* irfs_gov0 (3, 2:10), 'r--');hold on;
-plot(2:10,400* irfs_gov1 (5, 2:10), 'g--');hold on;
-plot(2:10,400* irfs_gov2 (5, 2:10), 'k-.');
-title ('Negative Taste Shock and Fiscal Response');
-xlabel('Quarters');
-
+plot(2:16,400* irfs_gov0 (5, 2:16), 'b')  ;hold on;
+plot(2:16,400* irfs_gov0 (3, 2:16), 'r--');hold on;
+plot(2:16,400* irfs_gov1 (5, 2:16), 'g--');hold on;
+plot(2:16,400* irfs_gov2 (5, 2:16), 'k-.');
+title('Negative Taste Shock and Fiscal Response','FontSize',14)
+set(gca,'Ylim',[-10,0]);
+set(gca,'YTick',[-10:5:0]);
+set(gca,'XTick',[1:4:20]);
+set(gca,'XTickLabel','0|4|8|12|16');
+xlabel('Quarters','FontSize',12);
 legend('Potential real rate (taste shock only)','Nominal interest rate (taste shock only)', 'Pot real rate -1 g(t) increase','Pot real interest rate -2 g(t) increase','location','SouthEast');
 
