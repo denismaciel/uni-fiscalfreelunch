@@ -6,7 +6,7 @@
 shocks;
 var eps_gov;
 periods 1:1;
-values (1);
+values (sig_gov);
 end;
 ///eps_gov_0= 1/shrgy = 1/0.2 = 5
 shocks;

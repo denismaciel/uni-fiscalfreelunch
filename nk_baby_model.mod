@@ -21,7 +21,7 @@ eps_con eps_gov;
 // List structural parameters and assign values
 parameters
 beta alpha sigma chi shrgy nuc xip rho 
-gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con pibar ibar;
+gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con sig_gov pibar ibar;
 
 
 
@@ -52,7 +52,8 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  15     ;        // Std of consumption taste shock(in percent?)  random value
+sig_con =  15     ;        // Std of consumption taste shock
+sig_gov =  1      ;        // Std of government spending shock
 
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
@@ -156,7 +157,7 @@ check;
 
 //@#include "Figure1.mod"
 
-@#include  "Figure2.mod"
+//@#include  "Figure2.mod"
 
-//@#inlcude "Figure3.mod"
+@#include "Figure3.mod"
 
