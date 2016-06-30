@@ -1,10 +1,10 @@
 // Erceg and Lindé(2014): Is there a fiscal free lunch in a liquidity trap?
 // Denis Maciel and Tobias Müller
-// standard log-linarized version of the New Keynesian model with zero lower bound
+// Standard log-linarized version of the New Keynesian model with zero lower bound
 
 // Compute responses analytically for small NK model 
-// monetary policy follow Taylor rule after exit
-// makes restrictive assumption that govt spending and taste shocks are AR1
+// Monetary policy follow Taylor rule after exit
+// Makes restrictive assumption that govt spending and taste shocks are AR1
 
 
 
@@ -36,7 +36,7 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip     =  0.8    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+xip     =  1    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //xip  =   1      ;        // No inflation responses
 //xip  =   0.8    ;        // 5 quarter mean duration of price contracts
 //xip  =   0.75   ;        // 4 quarter mean duration of price contracts
@@ -52,8 +52,8 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  15     ;        // Std of consumption taste shock
-sig_gov =  1      ;        // Std of government spending shock
+sig_con =  42     ;        // Std of consumption taste shock
+sig_gov =  0.5      ;        // Std of government spending shock
 
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
@@ -119,7 +119,7 @@ lumptax= phi_tax*debtg(-1);
 yV=xV+ypotV;
 
 // real interest rate rV
-rV=4*iV-piV(+1);
+rV=iV-piV(+1);
 
 
 // shock processes
@@ -157,7 +157,7 @@ check;
 
 //@#include "Figure1.mod"
 
-//@#include  "Figure2.mod"
+@#include  "Figure2.mod"
 
-@#include "Figure3.mod"
+//@#include "Figure3.mod"
 

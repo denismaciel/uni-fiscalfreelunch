@@ -8,41 +8,76 @@ var eps_gov;
 periods 1:1;
 values (sig_gov);
 end;
-///eps_gov_0= 1/shrgy = 1/0.2 = 5
+
+// consumption taste shock
 shocks;
 var eps_con;
 periods 1:1;
 values(-sig_con); 
 end;
-//stochastic simulation
+
 simul(periods=150); 
 //save irfs 
-irfs_xip1 = oo_.endo_simul;
-
+irfs_gov1 = oo_.endo_simul;
 
 
 //SECOND SIMULATION
 shocks;
 var eps_gov;
 periods 1:1;
-values (1.5);
+values (0);
 end;
-///eps_gov_0= 1/shrgy = 1/0.2 = 5
-//stochastic simulation
+
 simul(periods=150);
 //save irfs
-irfs_xip2 = oo_.endo_simul;
+irfs_gov2 = oo_.endo_simul;
 
 
 
-//Plotting the IRFS for xip=1 and xip=0.8 in the same plot
+//Plotting dynamic effects of the taste shock νt
 figure;
 //looping over all variables
 for jj=1:1:11
 subplot(6,2,jj);
-plot(1:40, irfs_xip1(jj,1:40), 'k');hold on;
-plot(1:40, irfs_xip2(jj, 1:40), 'r--');hold on;
-plot(1:40, irfs_xip1(jj,1:40) - irfs_xip2(jj, 1:40), 'b--');
+plot(1:40, irfs_gov1(jj,1:40), 'g');hold on;
+plot(1:40, irfs_gov2(jj, 1:40), 'b--');hold on;
+plot(1:40, irfs_gov1(jj,1:40) - irfs_gov2(jj, 1:40), 'r-.');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
+xlabel('Quarters');
 legend('both shocks', 'Taste shock only', 'Government Shock only'); //add legend
 end
+
+figure;
+subplot(2,2,1)
+plot(2:20, 400*irfs_gov1(11,2:20), 'g');hold on;
+plot(2:20, 400*irfs_gov2(11,2:20), 'b--');hold on;
+plot(2:20, 400*(irfs_gov1(11,2:20) - irfs_gov2(11,2:20)), 'r-.');
+title('Real Interest Rate');
+xlabel ('Quarters');
+text('String','No Inflation Response','Units','normalized', ...
+     'Position',[0.5 1.18],...
+     'FontSize',14,'FontWeight','bold','HorizontalAlignment','center');
+
+subplot(2,2,2)
+plot(2:20, 100*irfs_gov1(1,2:20), 'g');hold on;
+plot(2:20, 100*irfs_gov2(1,2:20), 'b--');hold on;
+plot(2:20, 100*(irfs_gov1(1,2:20) - irfs_gov2(1,2:20)), 'r-.');
+title('Output Gap');
+xlabel ('Quarters');
+
+subplot(2,2,3)
+plot(2:20, 400*irfs_gov1(2,2:20), 'g');hold on;
+plot(2:20, 400*irfs_gov2(2,2:20), 'b--');hold on;
+plot(2:20, 400*(irfs_gov1(2,2:20) - irfs_gov2(2,2:20)), 'r-.');
+title('Inflation');
+xlabel ('Quarters');
+legend('both shocks', 'Taste shock only', 'Government Shock only','location','SouthEast'); //add legend
+
+subplot(2,2,4)
+plot(25*debtg(1:40));
+plot(2:20, 25*irfs_gov1(6,2:20), 'g');hold on;
+plot(2:20, 25*irfs_gov2(6,2:20), 'b--');hold on;
+plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.');
+title('Government Debt/GDP');
+xlabel ('Quarters');
+
