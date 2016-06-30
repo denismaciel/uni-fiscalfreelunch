@@ -51,5 +51,5 @@ plot(2:10,400* irfs_gov2 (5, 2:10), 'k-.');
 title ('Negative Taste Shock and Fiscal Response');
 xlabel('Quarters');
 
-legend('Potential real rate (taste shock only)','Nominal interest rate (taste shock only)', 'Pot real rate -1 g(t) increase)','Pot real interest rate -2 g(t) increase','location','SouthEast');
+legend('Potential real rate (taste shock only)','Nominal interest rate (taste shock only)', 'Pot real rate -1 g(t) increase','Pot real interest rate -2 g(t) increase','location','SouthEast');
 
