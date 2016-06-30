@@ -81,3 +81,5 @@ plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.');
 title('Government Debt/GDP');
 xlabel ('Quarters');
 
+liqduration =  [sum(irfs_gov1(3,1:end) == -ibar) sum(irfs_gov2(3,1:end) == -ibar)]
+

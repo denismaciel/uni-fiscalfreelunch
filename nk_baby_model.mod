@@ -36,15 +36,15 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip     =  1    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+xip     =  1   ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //xip  =   1      ;        // No inflation responses
 //xip  =   0.8    ;        // 5 quarter mean duration of price contracts
 //xip  =   0.75   ;        // 4 quarter mean duration of price contracts
 //xip  =   0.667  ;        // 3 quarter mean duration of price contracts
 //xip  =   0      ;        // flexible prices
 
-gam_xgap=  0.2    ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2)
-gam_pi  =  1.5    ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
+gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2)
+gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -52,8 +52,8 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  42     ;        // Std of consumption taste shock
-sig_gov =  0.5      ;        // Std of government spending shock
+sig_con =  30    ;        // Std of consumption taste shock
+sig_gov =  0.01      ;        // Std of government spending shock
 
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
