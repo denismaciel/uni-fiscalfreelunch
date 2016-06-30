@@ -1,5 +1,6 @@
 //Figure2
-//dynamic effects of the taste shock νt on the
+//Immediate rise in government spending
+//Dynamic effects of the taste shock νt on the...
 //real interest rate rV, output gap xV, inflation piV, and government debt debtg
 
 // government spending shock
@@ -13,11 +14,11 @@ end;
 shocks;
 var eps_con;
 periods 1:1;
-values(-sig_con); 
+values(-sig_con);
 end;
 
-simul(periods=150); 
-//save irfs 
+simul(periods=150);
+//save irfs
 irfs_gov1 = oo_.endo_simul;
 
 
@@ -82,4 +83,3 @@ title('Government Debt/GDP');
 xlabel ('Quarters');
 
 liqduration =  [sum(irfs_gov1(3,1:end) == -ibar) sum(irfs_gov2(3,1:end) == -ibar)]
-

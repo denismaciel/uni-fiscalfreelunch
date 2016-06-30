@@ -1,8 +1,8 @@
-// Erceg and Lindé(2014): Is there a fiscal free lunch in a liquidity trap?
-// Denis Maciel and Tobias Müller
+// Erceg and Lindï¿½(2014): Is there a fiscal free lunch in a liquidity trap?
+// Denis Maciel and Tobias Mï¿½ller
 // Standard log-linarized version of the New Keynesian model with zero lower bound
 
-// Compute responses analytically for small NK model 
+// Compute responses analytically for small NK model
 // Monetary policy follow Taylor rule after exit
 // Makes restrictive assumption that govt spending and taste shocks are AR1
 
@@ -20,7 +20,7 @@ eps_con eps_gov;
 
 // List structural parameters and assign values
 parameters
-beta alpha sigma chi shrgy nuc xip rho 
+beta alpha sigma chi shrgy nuc xip rho
 gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con sig_gov pibar ibar;
 
 
@@ -36,7 +36,7 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip     =  1   ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+xip     =  0.8   ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //xip  =   1      ;        // No inflation responses
 //xip  =   0.8    ;        // 5 quarter mean duration of price contracts
 //xip  =   0.75   ;        // 4 quarter mean duration of price contracts
@@ -64,7 +64,7 @@ ibar = (pibar/beta) - 1;    //nominal nominal interest rate - duration of the li
 
 //sigma_hat
 sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
-                                              
+
 //phi_mc
 phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
 
@@ -134,8 +134,8 @@ end;
 // Assign analytical steady state values as initial values
 initval;
 xV=0;
-piV=0;      
-iV=0	;       
+piV=0;
+iV=0	;
 ypotV=0;
 rpotV=0;
 debtg=0;
@@ -149,15 +149,14 @@ end;
 // calculate analytical steady state values of endog. variables
 steady ;
 
-// Check stability conditions 
+// Check stability conditions
 check;
 
 
-//@#include "govmultiplier.mod"
+@#include "Figure1.mod"
 
-//@#include "Figure1.mod"
-
-@#include  "Figure2.mod"
+//@#include  "Figure2.mod"
 
 //@#include "Figure3.mod"
 
+//@#include "govmultiplier.mod"

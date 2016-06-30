@@ -1,47 +1,41 @@
-**Curren version**: nkm_neu_tobias
-__ 
+**Curren version**: nkm_baby_model
 
 
 ## Consultation Session
-2. How to calculate the fiscal multiplier? 
-3. Why do we have ackward values for new steady state? Why do we need such a huge shock to make the IFRS move? DONE
-1. How to implement flex price scenario? xip = 0
-1. Why doesn't Flora's code work with our model? FUCK OFF
-4. Taylor rule parameters OK 
+````
+1. How to calculate the fiscal multiplier?
+	- calculate and plot "dynamic" multiplier
 
-- calculate and plot "dynamic" multiplier 
+2. What´s next? How much more should we do?
 
-overview
-what we have done
-
+````
 
 ## To-do's
 
-- Überprüfen der Gleichungen und Standardwerte OK
+````
+- include -i in y-axis and % in legend of Figure 1
+- include loop of xip in Figure 2 to get 8 subplots
 
-- Include equation for spending multiplier
-- Find out the 8-quarter liquidity trap values (shock value)
+- create Figure 1b:  liquidity trap duration and rpot
+- create  Figure 3b:  government spending multplier to change in government spending shock
 
-- Grafiken erstellen für unterschiedliche Werte für xip, conshk, govshk, gamm    //Tipp: Codes von Jesper anschauen, dort Figure 1,2 & 3
-
-- Anpassen von kappap um Wert xip=0 zuzulassen  (multiply with xip)
-
-- Logliniarizieren von Model
-
+- think about why gam_pi and gam_xgap are 1000 in baby model
+- log-linarization of model
+- write essay
+````
 
 ### How to get the code a plot with two values of xip
 
+
 1. Run the dynare file and in the end save the results by pasting the following code into MATLAB:
 
-```js 
 oo_1 = oo_
 
 save simul1 oo_1
-```
+
 
 2. Change the value of the variable in the source code, save and run it again. Then, paste the following into MATLAB
 
-```
 load simul1
 
 %%Plotting the IRFS for xip=1 and xip=0.8 in the same plot
@@ -51,26 +45,13 @@ for jj=1:1:11
 subplot(6,2,jj);
 plot(1:40, oo_1.endo_simul(jj,1:40), 'k');hold on;
 plot(1:40, oo_.endo_simul(jj, 1:40), 'r--');
-title(M_.endo_names(jj,:)); 
+title(M_.endo_names(jj,:));
 legend('xip = 1', 'xip = 0.8');
 end
-```
 
 
-## Value Setting
 
-``` js
-gam_xgap [0.2 - 1000]
-gam_pi  [1.5 - 1000]
-
-xip [ 0, 0.8, 1]
-
-sig_con  			//  arbitrarly high
-
-sig_gov = 1/shrgy  // different value
-```
-
-## Log 
+## Log
 
 ### nkm_govmultiplier.mod
 Created this file to simulate different government responses
@@ -88,7 +69,7 @@ Created this file to simulate different government responses
 	- compare `mul1` and `mul15` and see that they have the same value.  
 
 - My suggestion of value
-```js 
+```js
 //First Result
 0.00
 0.03
@@ -114,9 +95,9 @@ Did not work:
 
 2. Maybe the code of the second simulation was not work. But it is. I tested changing the value of sig_con and and it had clear effects on the simulation.
 
-Worked: If you change the values of xip from 1 to 0.2 in the beginning of the code, inflation varies. The problem seems to be with the two simulations inside the same code. 
+Worked: If you change the values of xip from 1 to 0.2 in the beginning of the code, inflation varies. The problem seems to be with the two simulations inside the same code.
 
-In fact, the problem is with second simulation within the code. I simulated the model with two different values of alpha and it had no effects on the results. It seems that you can only change the __size__ of the shock for the double simulation to work. 
+In fact, the problem is with second simulation within the code. I simulated the model with two different values of alpha and it had no effects on the results. It seems that you can only change the __size__ of the shock for the double simulation to work.
 
 
 It works only with sig_con because the only code that is rerun in the double simulation is the following:
@@ -129,14 +110,37 @@ sig_con=1000;
 shocks;
 var eps_con;
 periods 1:1;
-values(sig_con); 
+values(sig_con);
 end;
 //stochastic simulation
-simul(periods=40); 
-//save irfs 
+simul(periods=40);
+//save irfs
 irfs_xip2 = oo_.endo_simul;
 ```
 
+### nk_baby_model
+Created this to have a standard file for our paper
+Includes
+- general description
+- endogenous variables
+- parameters
+- model equations
+- steady state initial values
+- calculate analytical steady state values of endog. variables
+- check stability conditions
+- Include Figures and testing files
+	- easier to notice changes in standard model
+	- easier to create new Figures
 
+#### Figure1
+Negative Taste Shock and Fiscal Response
 
+#### Figure2
+Immediate rise in government spending
+- 8 subplots (4: no inflation response (xip=1) - 4: 5 quarter price contracts (xip=0.8))
+- maybe include also extra subplots for 4 quarter price contracts and 3 quarter price contracts
 
+#### Figure3
+Impact of multiplier varies with the level of government spending, assuming the taste shock induces an eight quarter liquidity trap
+
+#### govmultiplier
