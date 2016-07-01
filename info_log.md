@@ -13,11 +13,11 @@
 ## To-do's
 
 ````
-- include -i in y-axis and % in legend of Figure 1
+- include % in legend of Figure 1
 - include loop of xip in Figure 2 to get 8 subplots
 
 - create Figure 1b:  liquidity trap duration and rpot
-- create  Figure 3b:  government spending multplier to change in government spending shock
+- create  Figure 3b:  government spending multiplier to change in government spending shock
 
 - think about why gam_pi and gam_xgap are 1000 in baby model
 - log-linarization of model
