@@ -45,7 +45,7 @@ plot(1:40, irfs_gov2(jj, 1:40), 'b--');hold on;
 plot(1:40, irfs_gov1(jj,1:40) - irfs_gov2(jj, 1:40), 'r-.');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
 xlabel('Quarters');
-legend('both shocks', 'Taste shock only', 'Government Shock only'); //add legend
+legend('Both shocks', 'Taste shock only', 'Government Shock only'); //add legend
 end
 
 figure;
@@ -53,33 +53,51 @@ subplot(2,2,1)
 plot(2:20, 400*irfs_gov1(11,2:20), 'g');hold on;
 plot(2:20, 400*irfs_gov2(11,2:20), 'b--');hold on;
 plot(2:20, 400*(irfs_gov1(11,2:20) - irfs_gov2(11,2:20)), 'r-.');
-title('Real Interest Rate');
+title('Real Interest Rate', 'FontSize',14);
 xlabel ('Quarters');
+set(gca,'XTick',[1:4:20])
+set(gca,'XTickLabel','0|4|8|12|16')
+xlabel('Quarters','FontSize',12)
 text('String','No Inflation Response','Units','normalized', ...
-     'Position',[0.5 1.18],...
+     'Position',[1.15 1.18],...
      'FontSize',14,'FontWeight','bold','HorizontalAlignment','center');
 
 subplot(2,2,2)
 plot(2:20, 100*irfs_gov1(1,2:20), 'g');hold on;
 plot(2:20, 100*irfs_gov2(1,2:20), 'b--');hold on;
 plot(2:20, 100*(irfs_gov1(1,2:20) - irfs_gov2(1,2:20)), 'r-.');
-title('Output Gap');
+title('Output Gap', 'FontSize',14);
 xlabel ('Quarters');
+set(gca,'XTick',[1:4:20])
+set(gca,'XTickLabel','0|4|8|12|16')
+xlabel('Quarters','FontSize',12)
 
 subplot(2,2,3)
 plot(2:20, 400*irfs_gov1(2,2:20), 'g');hold on;
 plot(2:20, 400*irfs_gov2(2,2:20), 'b--');hold on;
 plot(2:20, 400*(irfs_gov1(2,2:20) - irfs_gov2(2,2:20)), 'r-.');
-title('Inflation');
+title('Inflation','FontSize',14);
 xlabel ('Quarters');
-legend('both shocks', 'Taste shock only', 'Government Shock only','location','SouthEast'); //add legend
+set(gca,'XTick',[1:4:20])
+set(gca,'XTickLabel','0|4|8|12|16')
+xlabel('Quarters','FontSize',12)
+legend('Both shocks', 'Taste shock only', 'Government shock only','location','SouthEast'); //add legend
 
 subplot(2,2,4)
 plot(25*debtg(1:40));
 plot(2:20, 25*irfs_gov1(6,2:20), 'g');hold on;
 plot(2:20, 25*irfs_gov2(6,2:20), 'b--');hold on;
 plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.');
-title('Government Debt/GDP');
+title('Government Debt/GDP', 'FontSize',14);
 xlabel ('Quarters');
+set(gca,'XTick',[1:4:20])
+set(gca,'XTickLabel','0|4|8|12|16')
+xlabel('Quarters','FontSize',12)
 
+//calculate positive output of government spending shock on debt
+gov_debt_govshk = irfs_gov1(6,1:20) - irfs_gov2(6,1:20)
+gov_debt_govshk_duration = gov_debt_govshk < 0
+sum (gov_debt_govshk_duration)
+
+//calculate liquidity trap duration
 liqduration =  [sum(irfs_gov1(3,1:end) == -ibar) sum(irfs_gov2(3,1:end) == -ibar)]
