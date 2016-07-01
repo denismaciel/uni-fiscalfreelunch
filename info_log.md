@@ -13,7 +13,6 @@
 ## To-do's
 
 ````
-- include % in legend of Figure 1
 - include loop of xip in Figure 2 to get 8 subplots
 
 - create Figure 1b:  liquidity trap duration and rpot
