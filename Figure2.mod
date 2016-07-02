@@ -89,6 +89,9 @@ plot(2:20, 25*irfs_gov1(6,2:20), 'g');hold on;
 plot(2:20, 25*irfs_gov2(6,2:20), 'b--');hold on;
 plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.');
 title('Government Debt/GDP', 'FontSize',14);
+set(gca,'Ylim',[-1,10]);
+set(gca,'YTick',[0:10]);
+set(gca, 'YTickLabel', '0 | |2 | |4 | |6 | |8 | |10 ')
 xlabel ('Quarters');
 set(gca,'XTick',[1:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')

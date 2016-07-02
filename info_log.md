@@ -23,6 +23,13 @@
 - write essay
 ````
 
+### Need for explication
+
+- why gamma so large?
+- what does the equation of rpot and ypot really mean?
+- why debt multiplied with 25 in the plot Figure2?
+- how does the loop work? :)
+
 ### How to get the code a plot with two values of xip
 
 
