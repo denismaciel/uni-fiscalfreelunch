@@ -28,6 +28,7 @@
 - why gamma so large?
 - what does the equation of rpot and ypot really mean?
 - why debt multiplied with 25 in the plot Figure2?
+- what do all the text(....) in Figure2 headline "No Inflation response" mean?
 - how does the loop work? :)
 
 ### How to get the code a plot with two values of xip
