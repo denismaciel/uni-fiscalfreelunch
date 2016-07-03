@@ -52,7 +52,20 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
 
-sig_con =  30    ;        // Std of consumption taste shock
+sig_con =  30     ;        // Std of consumption taste shock
+//sig_con =  14   ;        // 1 quarter trap
+//sig_con = 15.5  ;        // 2 quarter trap
+//sig_con = 17.7  ;        // 3 quarter trap
+//sig_con = 19.8  ;        // 4 quarter trap
+//sig_con = 22    ;        // 5 quarter trap
+//sig_con = 24.4  ;        // 6 quarter trap
+//sig_con = 27.1  ;        // 7 quarter trap
+//sig_con = 30.2  ;        // 8 quarter trap
+//sig_con = 33.4  ;        // 9 quarter trap
+//sig_con = 37.2  ;        // 10 quarter trap
+//sig_con = 41.4  ;        // 11 quarter trap
+//sig_con = 46    ;        // 12 quarter trap
+
 sig_gov =  0.01      ;        // Std of government spending shock
 
 
@@ -82,13 +95,13 @@ taxsub= shrgy/thetap;
 
 
 
-
 ///////////////////////////////////////////////////////
 // Write down system of equilibrium equations
 model;
 
 //new IS equation
-xV= -sigma_hat* (symsum(-ibar-rpotV(+j),  j,0, liqduration   ))     + sigma_hat* (symsum(piV(+j), j,1, liqduration   ))      +  xV(+liqduration);
+symvar(j,liqduration)
+xV= -sigma_hat* (symsum(-ibar-rpotV(+j),  j,0,liqduration))   + sigma_hat* (symsum(piV(+j), j,1, liqduration))    +  xV(+liqduration);
 
 
 //Phillips curve
@@ -153,10 +166,4 @@ steady ;
 check;
 
 
-//@#include "Figure1.mod"
-
-@#include  "Figure2.mod"
-
-//@#include "Figure3.mod"
-
-//@#include "govmultiplier.mod"
+@#include "Figure1b.mod"
