@@ -7,3 +7,5 @@
 *.eps
 
 *.asv
+
+.Rhistory
