@@ -34,7 +34,7 @@ irfs_gov1 = oo_.endo_simul;
 shocks;
 var eps_gov;
 periods 1:1;
-values (0.02);
+values (0.1);
 end;
 simul(periods=150);
 //save irfs

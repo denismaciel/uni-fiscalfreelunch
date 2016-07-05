@@ -3,6 +3,8 @@
 //Dynamic effects of the taste shock νt on the...
 //real interest rate rV, output gap xV, inflation piV, and government debt debtg
 
+
+//FIRST SIMULATION(Both shocks)
 // government spending shock
 shocks;
 var eps_gov;
@@ -22,11 +24,19 @@ simul(periods=150);
 irfs_gov1 = oo_.endo_simul;
 
 
-//SECOND SIMULATION
+//SECOND SIMULATION(Taste shock only)
+//government spending shock
 shocks;
 var eps_gov;
 periods 1:1;
 values (0);
+end;
+
+// consumption taste shock
+shocks;
+var eps_con;
+periods 1:1;
+values(-sig_con);
 end;
 
 simul(periods=150);
@@ -104,3 +114,19 @@ sum (gov_debt_govshk_duration)
 
 //calculate liquidity trap duration
 liqduration =  [sum(irfs_gov1(3,1:end) == -ibar) sum(irfs_gov2(3,1:end) == -ibar)]
+
+//calculate government spending multiplier
+y1 = irfs_gov1(10,2);
+g1 = irfs_gov1(8,2);
+y2 = irfs_gov2(10,2);
+g2 = irfs_gov2(8,2);
+
+mul1 = (y1 - y2)/(g1 - g2) * 1/shrgy
+
+//calculate output gap response
+x = 100*(irfs_gov1(1,2) - irfs_gov2(1,2))
+
+//calculate potential output response
+ypot = 100*(irfs_gov1(4,2) - irfs_gov2(4,2))
+
+mul = x + ypot

@@ -1,5 +1,5 @@
-// Erceg and Lind�(2014): Is there a fiscal free lunch in a liquidity trap?
-// Denis Maciel and Tobias M�ller
+// Erceg and Linde(2014): Is there a fiscal free lunch in a liquidity trap?
+// Denis Maciel and Tobias Mueller
 // Standard log-linarized version of the New Keynesian model with zero lower bound
 
 // Compute responses analytically for small NK model
@@ -38,22 +38,23 @@ nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
 xip     =  0.8   ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //xip  =   1      ;        // No inflation responses
-//xip  =   0.8    ;        // 5 quarter mean duration of price contracts
-//xip  =   0.75   ;        // 4 quarter mean duration of price contracts
-//xip  =   0.667  ;        // 3 quarter mean duration of price contracts
+//xip  =   0.9    ;        // 10 quarter mean durationvof price contracts
+//xip  =   0.8    ;        // 5  quarter mean duration of price contracts
+//xip  =   0.75   ;        // 4  quarter mean duration of price contracts
+//xip  =   0.667  ;        // 3  quarter mean duration of price contracts
 //xip  =   0      ;        // flexible prices
 
-gam_xgap=  1000   ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2)
-gam_pi  =  1000   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
+gam_xgap=  66.15 ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2) 66.15
+gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
 phi_tax =  0.01   ;        // tax rule parameter
 
-thetap  =  0.7    ;        // steady-state labor share - (1-alpha) capital share
+thetap  =  0.7    ;        // steady-state labor share: (1-alpha) = capital share
 
-sig_con =  30    ;        // Std of consumption taste shock
-sig_gov =  0.01      ;        // Std of government spending shock
+sig_con =  30   ;        // Std of consumption taste shock
+sig_gov =  0.05   ;        // Std of government spending shock   (0,01*5 to get government spending increase of 1% GDP (shrgy=0.2))
 
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
@@ -66,7 +67,7 @@ ibar = (pibar/beta) - 1;    //nominal nominal interest rate - duration of the li
 sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
 
 //phi_mc
-phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
+phi_mc= chi/(1-alpha) + 1/sigma_hat + alpha/(1-alpha);
 
 //phi_mc = lam_mrs+lam_mpl;
 //lam_mrs = chi/(1-alpha) + 1/sigma_hat;        // slope of MRS schedule (how supply real wage varies with output -
@@ -75,7 +76,7 @@ phi_mc= (chi/(1-alpha) + 1/sigma_hat) + (alpha/(1-alpha));
                                                 // labor share of production
 
 //kappap
-kappap = ((1-xip)*(1-beta*xip)/xip)*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
+kappap = (1-xip)*(1-beta*xip)/xip*phi_mc;  // Calvo-Yun contract structure - set kappap close to zero to keep inflation konstant
 
 //financing government spending
 taxsub= shrgy/thetap;
