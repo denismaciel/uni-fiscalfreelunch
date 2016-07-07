@@ -111,5 +111,57 @@ figure;
 subplot(1,1,1)
 plot((1/shrgy)*x(1:length(avgmulx)), avgmulx, 'g --'); hold on;
 plot((1/shrgy)*x(1:length(avgmulx)), liqmul(:,1));
-xlabel('% Change in Govt Spend (Share of GDP)')
-ylabel('Government Spending Multiplier')
+xlabel('% Change in Govt Spend (Share of GDP)');
+ylabel('Government Spending Multiplier');
+end
+
+//
+// xV
+// piV
+// iV
+// ypotV
+// rpotV
+// debtg
+// conshk
+// govshk
+// lumptax
+// yV
+// rV
+
+
+debtgov = zeros(size(A,3),1);
+for i = 1:size(A,3)
+
+	debtgov(i) = A(6, 2, i); 
+
+end;
+
+
+gdp = zeros(size(A,3),1);
+for i = 1:size(A,3)
+
+	gdp(i) = A(10, 2, i); 
+
+end;
+
+outgap = zeros(size(A,3),1);
+for i = 1:size(A,3)
+
+	outgap(i) = A(1, 2, i); 
+
+end;
+
+// I have tried it with three different definitions of "Government Debt to Actual GDP", none of which has worked out.
+p = rdivide(debtgov,gdp);
+
+p = debtgov;
+	
+%%p =	rdivide(debtgov, outgap);
+
+plot(1/shrgy * x(273:end), p(273:end));
+xlabel('Government Debt to Actual GDP');
+ylabel('% Change in Govt Spend (Share of GDP)');
+xlim([0 12]);
+ylim([0 1]);
+
+	
