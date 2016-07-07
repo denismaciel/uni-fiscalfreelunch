@@ -12,6 +12,16 @@
 
 ## To-do's
 
+- plot variation of rpot and liquidity trap/ change of sig_con from 0 to 50(?)(Figure 1b)
+- plot change in sig_gov from 0 to 0.5 and change in government debt to actual GDP (Figure 3)
+
+- find right values for gam_pi and/or gam_xgap, to get the exact multiplier values
+
+
+
+
+
+
 ````
 - include loop of xip in Figure 2 to get 8 subplots
 
