@@ -60,50 +60,54 @@ end
 
 figure;
 subplot(2,2,1)
-plot(2:20, 400*irfs_gov1(11,2:20), 'g');hold on;
-plot(2:20, 400*irfs_gov2(11,2:20), 'b--');hold on;
-plot(2:20, 400*(irfs_gov1(11,2:20) - irfs_gov2(11,2:20)), 'r-.');
+plot(2:20, 400*irfs_gov1(11,2:20), 'g',   'linewidth',1.5);hold on;
+plot(2:20, 400*irfs_gov2(11,2:20), 'b--', 'linewidth',1.5);hold on;
+plot(2:20, 400*(irfs_gov1(11,2:20) - irfs_gov2(11,2:20)), 'r-.', 'linewidth',1.5);
 title('Real Interest Rate', 'FontSize',14);
 xlabel ('Quarters');
-set(gca,'XTick',[1:4:20])
+set(gca,'Xlim',[1,20]);
+set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
-text('String','No Inflation Response','Units','normalized', ...
-     'Position',[1.15 1.18],...
-     'FontSize',14,'FontWeight','bold','HorizontalAlignment','center');
+text('String','No Inflation Response','Units','normalized', ...                                     //change to 'xx Price Quarter Contracts'
+     'Position',[1.15 1.15],...
+     'FontSize',18,'FontWeight','bold','HorizontalAlignment','center');
 
 subplot(2,2,2)
-plot(2:20, 100*irfs_gov1(1,2:20), 'g');hold on;
-plot(2:20, 100*irfs_gov2(1,2:20), 'b--');hold on;
-plot(2:20, 100*(irfs_gov1(1,2:20) - irfs_gov2(1,2:20)), 'r-.');
+plot(2:20, 100*irfs_gov1(1,2:20), 'g',  'linewidth',1.5);hold on;
+plot(2:20, 100*irfs_gov2(1,2:20), 'b--','linewidth',1.5);hold on;
+plot(2:20, 100*(irfs_gov1(1,2:20) - irfs_gov2(1,2:20)), 'r-.', 'linewidth',1.5);
 title('Output Gap', 'FontSize',14);
 xlabel ('Quarters');
-set(gca,'XTick',[1:4:20])
+set(gca,'Xlim',[1,20]);
+set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
 
 subplot(2,2,3)
-plot(2:20, 400*irfs_gov1(2,2:20), 'g');hold on;
-plot(2:20, 400*irfs_gov2(2,2:20), 'b--');hold on;
-plot(2:20, 400*(irfs_gov1(2,2:20) - irfs_gov2(2,2:20)), 'r-.');
+plot(2:20, 400*irfs_gov1(2,2:20), 'g',   'linewidth',1.5);hold on;
+plot(2:20, 400*irfs_gov2(2,2:20), 'b--', 'linewidth',1.5);hold on;
+plot(2:20, 400*(irfs_gov1(2,2:20) - irfs_gov2(2,2:20)), 'r-.', 'linewidth',1.5);
 title('Inflation','FontSize',14);
 xlabel ('Quarters');
-set(gca,'XTick',[1:4:20])
+set(gca,'Xlim',[1,20]);
+set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
 legend('Both shocks', 'Taste shock only', 'Government shock only','location','SouthEast'); //add legend
 
 subplot(2,2,4)
 plot(25*debtg(1:40));
-plot(2:20, 25*irfs_gov1(6,2:20), 'g');hold on;
-plot(2:20, 25*irfs_gov2(6,2:20), 'b--');hold on;
-plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.');
+plot(2:20, 25*irfs_gov1(6,2:20), 'g',   'linewidth',1.5);hold on;
+plot(2:20, 25*irfs_gov2(6,2:20), 'b--', 'linewidth',1.5);hold on;
+plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.', 'linewidth',1.5);
 title('Government Debt/GDP', 'FontSize',14);
 set(gca,'Ylim',[-1,10]);
 set(gca,'YTick',[0:10]);
 set(gca, 'YTickLabel', '0 | |2 | |4 | |6 | |8 | |10 ')
 xlabel ('Quarters');
-set(gca,'XTick',[1:4:20])
+set(gca,'Xlim',[1,20]);
+set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
 
