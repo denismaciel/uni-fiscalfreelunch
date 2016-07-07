@@ -44,10 +44,10 @@ irfs_gov2 = oo_.endo_simul;
 
 // plot liquidity duration, iV, rpot
 figure;
-plot(2:16,400* irfs_gov0 (5, 2:16), 'b')  ;hold on;
-plot(2:16,400* irfs_gov0 (3, 2:16), 'r--');hold on;
-plot(2:16,400* irfs_gov1 (5, 2:16), 'g--');hold on;
-plot(2:16,400* irfs_gov2 (5, 2:16), 'k-.');
+plot(2:16,400* irfs_gov0 (5, 2:16), 'b',  'linewidth',2);hold on;
+plot(2:16,400* irfs_gov0 (3, 2:16), 'r:', 'linewidth',2);hold on;
+plot(2:16,400* irfs_gov1 (5, 2:16), 'g--','linewidth',2);hold on;
+plot(2:16,400* irfs_gov2 (5, 2:16), 'k-.','linewidth',2);
 title('Negative Taste Shock and Fiscal Response','FontSize',14)
 set(gca,'Ylim',[-10,0]);
 set(gca,'YTick',[-10:0]);
