@@ -154,9 +154,11 @@ steady ;
 check;
 
 
-@#include "Figure1.mod"
+//@#include "Figure1a.mod"
 
-//@#include  "Figure2.mod"
+//@#include "Figure1b.mod"
+
+@#include  "Figure2.mod"
 
 //@#include "Figure3.mod"
 
