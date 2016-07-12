@@ -110,10 +110,13 @@ avgmulx(avgmulx == 0) = NaN
 figure;
 subplot(1,1,1)
 plot((1/shrgy)*x(1:length(avgmulx)), avgmulx, 'g --'); hold on;
-plot((1/shrgy)*x(1:length(avgmulx)), liqmul(:,1));
-xlabel('% Change in Govt Spend (Share of GDP)');
+plot((1/shrgy)*x(1:length(avgmulx)), liqmul(:,1))
+xlabel('% Change in Govt Spend (Share of GDP)')
 ylabel('Government Spending Multiplier');
-end
+hold off;
+
+
+
 
 //
 // xV
@@ -153,14 +156,14 @@ end;
 
 // I have tried it with three different definitions of "Government Debt to Actual GDP", none of which has worked out.
 p = rdivide(debtgov,gdp);
+	
+p =	rdivide(debtgov, outgap);
 
 p = debtgov;
-	
-%%p =	rdivide(debtgov, outgap);
 
-plot(1/shrgy * x(273:end), p(273:end));
-xlabel('Government Debt to Actual GDP');
-ylabel('% Change in Govt Spend (Share of GDP)');
+plot(20 * x(273:end), p(273:end));
+xlabel('% Change in Govt Spend (Share of GDP)');
+ylabel('Government Debt to Actual GDP');
 xlim([0 12]);
 ylim([0 1]);
 
