@@ -25,7 +25,7 @@ gam_xgap gam_pi phi_tax thetap sigma_hat phi_mc kappap rbar taxsub sig_con sig_g
 
 
 
-///////////////////////////////////////////////////7
+////////////////////////////////////////////////////
 // Initialize Parameters
 
 beta    =  0.995  ;        // discount factor
@@ -36,7 +36,7 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip     =  0.8   ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+xip     =  0.8    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
 //xip  =   1      ;        // No inflation responses
 //xip  =   0.9    ;        // 10 quarter mean durationvof price contracts
 //xip  =   0.8    ;        // 5  quarter mean duration of price contracts
@@ -44,8 +44,8 @@ xip     =  0.8   ;        // Calvo price parameter - stickiness and contract dur
 //xip  =   0.667  ;        // 3  quarter mean duration of price contracts
 //xip  =   0      ;        // flexible prices
 
-gam_xgap=  66.15 ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2) 66.15
-gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5)
+gam_xgap=  70     ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2) 66.15 70 Fig 1a&b
+gam_pi  =  100    ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5) 66.15 100 Fig1a&b
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -53,7 +53,7 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share: (1-alpha) = capital share
 
-sig_con =  30   ;        // Std of consumption taste shock
+sig_con =  29.4   ;        // Std of consumption taste shock    29.4 F1a&b / 29.2Fig2 5qurt / 30.5 Fig2 sticky prices
 sig_gov =  0.05   ;        // Std of government spending shock   (0,01*5 to get government spending increase of 1% GDP (shrgy=0.2))
 
 
@@ -154,11 +154,11 @@ steady ;
 check;
 
 
-//@#include "Figure1a.mod"
+@#include "Figure1a.mod"
 
 //@#include "Figure1b.mod"
 
-@#include  "Figure2.mod"
+//@#include  "Figure2.mod"
 
 //@#include "Figure3.mod"
 
