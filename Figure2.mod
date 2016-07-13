@@ -69,6 +69,7 @@ set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
+text('String','No Inflation Response','Units','normalized', ...                          //change to 'xx Quarter Price Contracts'
      'Position',[1.15 1.15],...
      'FontSize',18,'FontWeight','bold','HorizontalAlignment','center');
 
@@ -78,6 +79,9 @@ plot(2:20, 100*irfs_gov2(1,2:20), 'b--','linewidth',3);hold on;
 plot(2:20, 100*(irfs_gov1(1,2:20) - irfs_gov2(1,2:20)), 'r-.', 'linewidth',3);
 title('Output Gap', 'FontSize',14);
 xlabel ('Quarters');
+// set(gca,'Ylim',[-10,5]);                                                                 //activate for '5 Quarter Price Contracts'
+// set(gca,'YTick',[-10:5:5]);                                                              //activate for '5 Quarter Price Contracts'
+// set(gca, 'YTickLabel', '-10 |-5 |0 |5 ')                                                 //activate for '5 Quarter Price Contracts'
 set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
