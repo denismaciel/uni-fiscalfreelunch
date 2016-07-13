@@ -44,8 +44,8 @@ xip     =  0.8    ;        // Calvo price parameter - stickiness and contract du
 //xip  =   0.667  ;        // 3  quarter mean duration of price contracts
 //xip  =   0      ;        // flexible prices
 
-gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2) 66.15 Fig2 & Fig3 5&4qurt / 70 Fig 1a&b 5 qurt / 1.1 Fig3 sticky prices
-gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5) 66.15 Fig2 & Fig3 5&4qurt/ 100 Fig1a&b
+gam_xgap=  66.15     ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2) 66.15 Fig2 & Fig3 5&4qurt & Fig 1a&b 5 qurt / 1.1 Fig3 sticky prices
+gam_pi  =  66.15   ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5) 66.15 Fig2 & Fig3 5&4qurt Fig 1a&b 5 qurt
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -53,7 +53,7 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share: (1-alpha) = capital share
 
-sig_con =  29.4   ;        // Std of consumption taste shock    29.4 F1a&b 5qurt & Fig3 4qurt/ 29.2Fig2 5qurt  / 30.2 Fig3 5qurt / 30.5 Fig2 sticky prices / 32 Fig3 sticky prices
+sig_con =  29.4   ;        // Std of consumption taste shock    29.2 F1a&b 5qurt & Fig3 4qurt & Fig2 5qurt  / 30.2 Fig3 5qurt / 30.5 Fig2 sticky prices / 32 Fig3 sticky prices
 sig_gov =  0.05   ;        // Std of government spending shock   (0,01*5 to get government spending increase of 1% GDP (shrgy=0.2))
 
 
@@ -154,11 +154,11 @@ steady ;
 check;
 
 
-//@#include "Figure1a.mod"
+// @#include "Figure1a.mod"
 
-//@#include "Figure1b.mod"
+// @#include "Figure1b.mod"
 
-//@#include  "Figure2.mod"
+// @#include  "Figure2.mod"
 
 @#include "Figure3.mod"
 
