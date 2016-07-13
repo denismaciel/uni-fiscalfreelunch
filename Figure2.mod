@@ -55,7 +55,7 @@ plot(1:40, irfs_gov2(jj, 1:40), 'b--');hold on;
 plot(1:40, irfs_gov1(jj,1:40) - irfs_gov2(jj, 1:40), 'r-.');
 title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
 xlabel('Quarters');
-legend('Both shocks', 'Taste shock only', 'Government Shock only'); //add legend
+legend('Both shocks', 'Taste shock only', 'Government only');
 end
 
 figure;
@@ -94,7 +94,7 @@ set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
-legend('Both shocks', 'Taste shock only', 'Government shock only','location','SouthEast'); //add legend
+legend('Both shocks', 'Taste shock only', 'Government only','location','SouthEast');
 
 subplot(2,2,4)
 plot(25*debtg(1:40));
