@@ -115,6 +115,7 @@ figure;
 plot( x(1:length(avgmulx)), liqmul(:,1), 'b',    'linewidth',3); hold on;
 plot( x(1:length(avgmulx)), avgmulx,     'g -.', 'linewidth',3);
 title('4 Quarter Price Contracts','fontweight','bold','FontSize',12)                  // change to "Alternative Price Contract Duration"
+legend('Marginal multiplier','Average multiplier','location','SouthEast');
 ax1 = gca;
 ylabel(gca,'Government Spending Multiplier','FontSize',12);
 //set(gca,'Ylim',[0,0.8]);                                                       // just activate for 'No Inflation Response'
@@ -136,9 +137,6 @@ set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
 // set(ax2,'Xtick',find(droprow));
 // set(ax2,'XTickLabel','12 |11 |10 |9 |8 |7 |6|5 |4 |3 |2 ');
 // line(liqduration,xlabel('Zero LowerBound Duration'));
-legend('Marginal multiplier','Average multiplier','location','SouthEast');
-
-
 hold off;
 
 
@@ -185,5 +183,5 @@ ylabel('Government Debt to Actual GDP');
 set(gca,'Xlim',[0,0.55]);
 set(gca,'XTick',[0:0.1:0.5]);
 set(gca,'XTickLabel','0 |2 |4 |6 |8 |10 ');
-// set(gca,'Ylim',[0,0.1]);                                                       // just activate for 'No Inflation Response'
-// set(gca,'YTick',[0:0.2:1]);                                                  // just activate for 'No Inflation Response'
+// set(gca,'Ylim',[0,0.1]);                                                           // just activate for 'No Inflation Response'
+// set(gca,'YTick',[0:0.2:1]);                                                        // just activate for 'No Inflation Response'

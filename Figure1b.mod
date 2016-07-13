@@ -48,7 +48,7 @@ end
 
 //Plot Figure 1b
 plot(400 * rpot, liqduration, 'b',  'linewidth',3)
-title('Liquidity Trap Duration and Potential Real Interest Rate','fontweight','bold','FontSize',12)
+title('Liquidity Trap Duration and Potential Real Interest Rate','fontweight','bold','FontSize',14)
 ylabel('Liquidity trap duration', 'FontSize',12)
 set(gca,'Ylim',[0,15]);
 set(gca,'YTick',[0:5:15]);
