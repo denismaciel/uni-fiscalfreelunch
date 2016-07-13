@@ -5,14 +5,14 @@
 
 
 //FIRST SIMULATION(Both shocks)
-// government spending shock
+//Government spending shock
 shocks;
 var eps_gov;
 periods 1:1;
 values (sig_gov);
 end;
 
-// consumption taste shock
+//Consumption taste shock
 shocks;
 var eps_con;
 periods 1:1;
@@ -25,14 +25,14 @@ irfs_gov1 = oo_.endo_simul;
 
 
 //SECOND SIMULATION(Taste shock only)
-//government spending shock
+//Government spending shock
 shocks;
 var eps_gov;
 periods 1:1;
 values (0);
 end;
 
-// consumption taste shock
+//Consumption taste shock
 shocks;
 var eps_con;
 periods 1:1;
@@ -44,7 +44,7 @@ simul(periods=150);
 irfs_gov2 = oo_.endo_simul;
 
 
-
+///////////////////////////////////////////////////////////////////
 //Plotting dynamic effects of the taste shock νt
 figure;
 //looping over all variables
@@ -57,7 +57,11 @@ title(M_.endo_names(jj,:)); //Use variable names stored in M_.endo_names
 xlabel('Quarters');
 legend('Both shocks', 'Taste shock only', 'Government only');
 end
+///////////////////////////////////////////////////////////////////
 
+
+//Plotting Figure 2 to show the effects of fiscal policy in a liquidity trap
+//Plotting Real Interest Rate
 figure;
 subplot(2,2,1)
 plot(2:20, 400*irfs_gov1(11,2:20), 'g',   'linewidth',3);hold on;
@@ -73,6 +77,7 @@ text('String','No Inflation Response','Units','normalized', ...                 
      'Position',[1.15 1.15],...
      'FontSize',18,'FontWeight','bold','HorizontalAlignment','center');
 
+//Plotting Output Gap
 subplot(2,2,2)
 plot(2:20, 100*irfs_gov1(1,2:20), 'g',  'linewidth',3);hold on;
 plot(2:20, 100*irfs_gov2(1,2:20), 'b--','linewidth',3);hold on;
@@ -87,6 +92,7 @@ set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
 
+//Plotting Inflation
 subplot(2,2,3)
 plot(2:20, 400*irfs_gov1(2,2:20), 'g',   'linewidth',3);hold on;
 plot(2:20, 400*irfs_gov2(2,2:20), 'b--', 'linewidth',3);hold on;
@@ -99,6 +105,7 @@ set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
 legend('Both shocks', 'Taste shock only', 'Government only','location','SouthEast');
 
+//Plotting Government Debt/GDP
 subplot(2,2,4)
 plot(25*debtg(1:40));
 plot(2:20, 25*irfs_gov1(6,2:20), 'g',   'linewidth',3);hold on;
@@ -114,15 +121,16 @@ set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
 
-//calculate positive output of government spending shock on debt
+//Some interesting calculations
+//Calculate positive output of government spending shock on debt
 gov_debt_govshk = irfs_gov1(6,1:20) - irfs_gov2(6,1:20)
 gov_debt_govshk_duration = gov_debt_govshk < 0
 sum (gov_debt_govshk_duration)
 
-//calculate liquidity trap duration
+//Calculate liquidity trap duration
 liqduration =  [sum(irfs_gov1(3,1:end) == -ibar) sum(irfs_gov2(3,1:end) == -ibar)]
 
-//calculate government spending multiplier
+//Calculate government spending multiplier
 y1 = irfs_gov1(10,2);
 g1 = irfs_gov1(8,2);
 y2 = irfs_gov2(10,2);
@@ -130,10 +138,10 @@ g2 = irfs_gov2(8,2);
 
 mul1 = (y1 - y2)/(g1 - g2) * 1/shrgy
 
-//calculate output gap response
+//Calculate output gap response
 x = 100*(irfs_gov1(1,2) - irfs_gov2(1,2))
 
-//calculate potential output response
+//Calculate potential output response
 ypot = 100*(irfs_gov1(4,2) - irfs_gov2(4,2))
 
 mul = x + ypot

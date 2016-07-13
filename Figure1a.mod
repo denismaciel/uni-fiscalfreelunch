@@ -1,7 +1,7 @@
 //Figure1a
 //Negative Taste Shock and Fiscal Response
 
-// consumption taste shock
+//Consumption taste shock
 shocks;
 var eps_con;
 periods 1:1;
@@ -9,8 +9,8 @@ values(-sig_con);
 end;
 
 
-// government spending shock
-// FIRST SIMULATION  (taste shock only)
+//Government spending shock
+//FIRST SIMULATION  (Taste shock only)
 shocks;
 var eps_gov;
 periods 1:1;
@@ -20,7 +20,7 @@ simul(periods=150);
 //save irfs
 irfs_gov0 = oo_.endo_simul;
 
-//SECOND SIMULATION  (government spending increase of 1%)
+//SECOND SIMULATION  (Government spending increase of 1%)
 shocks;
 var eps_gov;
 periods 1:1;
@@ -30,7 +30,7 @@ simul(periods=150);
 //save irfs
 irfs_gov1 = oo_.endo_simul;
 
-//THIRD SIMULATION   (government spending increase of 2%)
+//THIRD SIMULATION   (Government spending increase of 2%)
 shocks;
 var eps_gov;
 periods 1:1;
@@ -41,8 +41,7 @@ simul(periods=150);
 irfs_gov2 = oo_.endo_simul;
 
 
-
-// plot liquidity duration, iV, rpot
+//Plotting Figure 1a tu show the liquidity duration, iV, rpot & government spending increase of 1% and 2% of GDP
 figure;
 plot(2:16,400* irfs_gov0 (5, 2:16), 'b',  'linewidth',3);hold on;
 plot(2:16,400* irfs_gov0 (3, 2:16), 'r:', 'linewidth',4);hold on;
@@ -58,6 +57,5 @@ set(gca,'XTickLabel','0|4|8|12');
 xlabel('Quarters','FontSize',12);
 legend('Potential real rate (taste shock only)','Nominal interest rate (taste shock only)', 'Pot real rate -1% g(t) increase','Pot real interest rate -2% g(t) increase','location','SouthEast');
 
-
-//calculate liquidity trap duration
+//Calculate liquidity trap duration
 liqduration =  [sum(irfs_gov1(3,1:end) == -ibar) sum(irfs_gov2(3,1:end) == -ibar)]
