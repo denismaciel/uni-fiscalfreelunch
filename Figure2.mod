@@ -69,7 +69,6 @@ set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20])
 set(gca,'XTickLabel','0|4|8|12|16')
 xlabel('Quarters','FontSize',12)
-text('String','No Inflation Response','Units','normalized', ...                                     //change to 'xx Quarter Price Contracts'
      'Position',[1.15 1.15],...
      'FontSize',18,'FontWeight','bold','HorizontalAlignment','center');
 
