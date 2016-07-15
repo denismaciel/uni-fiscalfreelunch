@@ -21,12 +21,7 @@
 
 
 ````
-- include loop of xip in Figure 2 to get 8 subplots
-
-- create Figure 1b:  liquidity trap duration and rpot
-- create  Figure 3b:  government spending multiplier to change in government spending shock
-
-- think about why gam_pi and gam_xgap are 1000 in baby model
+- think about why gam_pi and gam_xgap are so high in baby model
 - log-linarization of model
 - write essay
 ````
@@ -34,10 +29,10 @@
 ### Need for explication
 
 - why gamma so large?
-- what does the equation of rpot and ypot really mean?
+- what does the equation of rpot and ypot really mean? DONE
 - why debt multiplied with 25 in the plot Figure2?
-- what do all the text(....) in Figure2 headline "No Inflation response" mean?
-- how does the loop work? :)
+- what do all the text(....) in Figure2 headline "No Inflation response" mean?  DONE
+- how does the loop work? :)   DONE
 
 ### How to get the code a plot with two values of xip
 
