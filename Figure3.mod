@@ -79,8 +79,10 @@ end
 //Combine the liquidity trap duration and multiplier into a single vector
 // liqmul = [mul, liqduration(1:(length(liqduration)-1)), x]; // delete
 
-liqmul = [transpose(x(1:(length(x)-1))), mul, liqduration(1:(length(x)-1))];
-liqmul = mat2dataset(liqmul, 'VarNames', {'shock', 'multiplier', 'duration'} );
+z = length(x)-1
+
+liqmul = [transpose(x(1:z)), transpose(y(1:z)), transpose(g(1:z)), mul, liqduration(1:(length(x)-1))];
+liqmul = mat2dataset(liqmul, 'VarNames', {'shock', 'y', 'g', 'multiplier', 'duration'} );
 
 
 //Calculate the average government spending multiplier
@@ -175,25 +177,25 @@ pbalance(droprow,:) = [];
 // save  pbalance_file pbalance_various
 
 
-// // COMMENT THE CODE !!!OUT!!! IN IF IT'S THE FIRST YOU'RE RUNNING THAT
+// // // COMMENT THE CODE !!!OUT!!! IN IF IT'S THE FIRST YOU'RE RUNNING THAT
+// //
+// load mul_file.mat;
+// load pbalance_file.mat;
 //
-load mul_file.mat;
-load pbalance_file.mat;
-
-//Create a matrix with the variables of interest
-
-if xip == 0.9
-
-		mul_various(:,:,1) = mul
-		pbalance_various(:,:,1) = pbalance
-elseif xip == 0.8
-		mul_various(:,:,2) = mul
-		pbalance_various(:,:,2) = pbalance
-else
-		mul_various(:,:,3) = mul
-		pbalance_various(:,:,3) = pbalance
-end
-
-save mul_file mul_various
-save pbalance_file pbalance_various
-save x_file x
+// //Create a matrix with the variables of interest
+//
+// if xip == 0.9
+//
+// 		mul_various(:,:,1) = mul
+// 		pbalance_various(:,:,1) = pbalance
+// elseif xip == 0.8
+// 		mul_various(:,:,2) = mul
+// 		pbalance_various(:,:,2) = pbalance
+// else
+// 		mul_various(:,:,3) = mul
+// 		pbalance_various(:,:,3) = pbalance
+// end
+//
+// save mul_file mul_various
+// save pbalance_file pbalance_various
+// save x_file x
