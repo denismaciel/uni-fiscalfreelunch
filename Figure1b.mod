@@ -47,13 +47,13 @@ end
 
 
 //Plotting Figure 1b to show the liquidity trap duration and the path of the policy rate
-plot(400 * rpot, liqduration, 'b',  'linewidth',3)
-title('Liquidity Trap Duration and Potential Real Interest Rate','fontweight','bold','FontSize',14)
-ylabel('Liquidity trap duration', 'FontSize',12)
+plot(400 * rpot, liqduration, 'b',  'linewidth',5)
+title('Liquidity Trap Duration and Potential Real Interest Rate','fontweight','bold','FontSize',18)
+ylabel('Liquidity trap duration', 'FontSize',16)
 set(gca,'Ylim',[0,15]);
 set(gca,'YTick',[0:5:15]);
 set(gca,'YTickLabel', '0 |5 |10 |15 ')
-xlabel('Potential Real Interest Rate','FontSize',12);
+xlabel('Potential Real Interest Rate','FontSize',16);
 set(gca,'Xlim',[-14,0]);
 set(gca,'XTick',[-14:2:0]);
 set(gca,'XTickLabel','-14|-12|-10|-8|-6|-4|-2|0');

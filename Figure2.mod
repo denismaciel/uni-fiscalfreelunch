@@ -145,3 +145,6 @@ x = 100*(irfs_gov1(1,2) - irfs_gov2(1,2))
 ypot = 100*(irfs_gov1(4,2) - irfs_gov2(4,2))
 
 mul = x + ypot
+
+//Calculate (negativ) change in government debt after 4 Quartes due to government spending increase
+debtgov= irfs_gov1(6,4) - irfs_gov2(6,4)
