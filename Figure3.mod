@@ -43,17 +43,19 @@ x = [-0.55155,-0.54955,-0.54755,-0.54555,-0.54354,-0.54154,-0.53954,-0.53754,-0.
 /////////////////////////////////////////////////////////////////
 //Plotting the liquidity trap duration and the change in government spending (step function)
 figure;
-plot(x, liqduration, 'b',    'linewidth',3)
+plot(x, liqduration, 'b', 'linewidth',3)
 ylabel('Liquidity trap duration', 'FontSize',12)
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',12)
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
-//set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
+set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
 hold off;
 
 
 /////////////////////////////////////////////////////////////////
-//Calculations to get the step fuction of Figure 3 (Average and marginal government spending multiplier)
+//         Figure 3: Average vs. Marginal Multiplier           //
+////////////////////////////////////////////////////////////////
+
 //Multiplier for every value x (Government spending shocks)
 //Exctract the values for y1 and g1 for each simulation
 y = zeros(1, size(A,3));
@@ -133,47 +135,35 @@ hold off;
 
 
 /////////////////////////////////////////////////////////////////
-// Government Debt to Actual GDP
+//                    Government Debt to Actual GDP            //
+////////////////////////////////////////////////////////////////
 debtgov = zeros(size(A,3),1);
 for i = 1:size(A,3)
 	debtgov(i) = A(6, 2, i);
 end;
 
-pbalance = zeros(2,1)
+pbalance = zeros((size(A,3)-1),1)
 for i = 1:(length(y)-1)
 	pbalance(i) = ((debtgov(i+1) - debtgov(i))/ (g(i+1) - g(i)));
 end;
-
-
-plot(x(1:length(x)-1), pbalance);
-for i = 1:(length(pbalance)-1)
-	f(i) = pbalance(i) == pbalance(i+1)
-end;
-
 
 //Same steps we did before to the multiplier
 liq_pbalance = [pbalance,liqduration(1:(length(liqduration)-1))]
 
 //Calculations to get the step fuction of Figure 3 (Budgetary impact of government spending)
-//Create vektor on Government Debt for both shocks
-debtgov = zeros(size(A,3),1);
-for i = 1:size(A,3)
-
-	debtgov(i) = A(6, 4, i);
-
-end;
+//Create vector on Government Debt for both shocks
 
 toincl = zeros((length(liqmul)-1),1);
 for i = 1:(length(liqmul)-1)
 	toincl(i) = liq_pbalance(i,2) == liq_pbalance(i+1,2);
 end;
 
-liq_pbalance = [liqmul(1:(length(liqmul)-1),:) toincl];
-
 droprow = find(toincl == 0);
 
 // Drop rows in which y1 and y0 are in different liquidity traps
-pbalance(droprow,:) = []
+pbalance(droprow,:) = [];
+
+
 
 /////////////////////////////////////////////////////////////////
 // COMMENT THE CODE BELOW !!!IN!!! IF IT'S THE FIRST YOU'RE RUNNING THAT
