@@ -182,16 +182,18 @@ load pbalance_file.mat;
 
 //Create a matrix with the variables of interest
 
-if xip == 0.9
-
+if xip == 1
 		mul_various(:,:,1) = mul
 		pbalance_various(:,:,1) = pbalance
+elseif xip == 0.9
+				mul_various(:,:,2) = mul
+				pbalance_various(:,:,2) = pbalance
 elseif xip == 0.8
-		mul_various(:,:,2) = mul
-		pbalance_various(:,:,2) = pbalance
-else
 		mul_various(:,:,3) = mul
 		pbalance_various(:,:,3) = pbalance
+else
+		mul_various(:,:,4) = mul
+		pbalance_various(:,:,4) = pbalance
 end
 
 save mul_file mul_various
