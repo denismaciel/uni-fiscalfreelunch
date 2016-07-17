@@ -48,7 +48,7 @@ ylabel('Liquidity trap duration', 'FontSize',12)
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',12)
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
-set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
+//set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
 hold off;
 
 
@@ -75,44 +75,50 @@ mul(i) = ((y(i+1) - y(i))/ (g(i+1) - g(i))) * 1/shrgy;
 end
 
 //Combine the liquidity trap duration and multiplier into a single vector
-liqmul = [mul,liqduration(1:(length(liqduration)-1))]
+// liqmul = [mul, liqduration(1:(length(liqduration)-1)), x]; // delete
 
+liqmul = [transpose(x(1:(length(x)-1))), mul, liqduration(1:(length(x)-1))];
+liqmul = mat2dataset(liqmul, 'VarNames', {'shock', 'multiplier', 'duration'} );
+
+
+//Calculate the average government spending multiplier
+// Find the smaller shock
+m = find(liqmul.shock ==  min(abs(liqmul.shock)));
+
+avgmul = zeros(length(x)-1, 1);
+for i = m:length(liqmul);
+	z =  (y(i) - y(m))/(g(i) - g(m)) * (1/shrgy);
+	avgmul(i) = z;
+end
+avgmul(avgmul == 0) = NaN;
+avgmul = mat2dataset(avgmul, 'VarNames', {'averagemul'});
+
+liqmul = cat(2, liqmul, avgmul)
+
+
+//DROP ROWS:exclude multiplier where g(i) and g(i+1) are in different liquidty traps
 toincl = zeros((length(liqmul)-1),1);
 for i = 1:(length(liqmul)-1)
-	toincl(i) = liqmul(i,2) == liqmul(i+1,2);
+	toincl(i) = liqmul.duration (i) == liqmul.duration(i+1);
 end;
 
-liqmul = [liqmul(1:(length(liqmul)-1),:) toincl];
+toincl = mat2dataset(toincl, 'VarNames', {'toinclude'})
 
-droprow = find(toincl == 0);
+liqmul = cat(2, liqmul(1:(length(liqmul)-1),:), toincl);
 
-// Drop rows in which y1 and y0 are in different liquidity traps
-liqmul(droprow,:) = []
+droprow = find(liqmul.toinclude == 0);
 
-//Calculate the average government spending multiplierr
-u = (length(liqmul)-1)
-avgmulx = zeros(u,1);
-for i = round(u/2 + 2):length(liqmul);
-	z = ((y(i) - y(round(u/2 + 1)))/(g(i) - g(round(u/2 + 1)))) * 1/shrgy;
-	avgmulx(i) = z;
-end
-avgmulx
-avgmulx(avgmulx == 0) = NaN
+// Drop rows in which y1 and y0 are in different liquidity traps, i.e. toinclude columns equals zero
+liqmul(droprow,:) = [];
 
-//
-// avgmul = zeros((length(liqmul)-1),1);
-// for i = 2:length(liqmul);
-// 	z = (y(i) - y(1))/(g(i) - g(1));
-// 	avgmul(i) = z;
-// end
-// avgmul
+//-----------------------------------------------
 
 
 /////////////////////////////////////////////////////////////////
 //Plotting Figure 3 to show the spending multipliers and government debt responses
 figure;
-plot( x(1:length(avgmulx)), liqmul(:,1), 'b',    'linewidth',5); hold on;
-plot( x(1:length(avgmulx)), avgmulx,     'g -.', 'linewidth',5);
+plot(liqmul.shock, liqmul.multiplier, 'b',    'linewidth',5); hold on;
+plot(liqmul.shock, liqmul.averagemul, 'g -.', 'linewidth',5);
 title('No Inflation Response','fontweight','bold','FontSize',18)
 legend('Marginal multiplier','Average multiplier','location','SouthEast');
 ax1 = gca;
@@ -123,19 +129,6 @@ xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',16)
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
 set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
-
-//set(get(gca,'title'),'Position',[5.5 0.4 1.00011]);
- // ax2 = axes('Position',get(ax1,'Position'),...
-  //  'XAxisLocation','top',...
-		// 'YAxisLocation','right',...
-		// 'XDir','reverse',...
-		// 'Color','none',...
-  //  'XColor','k','YColor','k');
-// set(ax2,'Ytick',[]);
-// set(ax2,'Xlim', [2,12]);
-// set(ax2,'Xtick',find(droprow));
-// set(ax2,'XTickLabel','12 |11 |10 |9 |8 |7 |6|5 |4 |3 |2 ');
-// line(liqduration,xlabel('Zero LowerBound Duration'));
 hold off;
 
 
@@ -182,7 +175,6 @@ droprow = find(toincl == 0);
 // Drop rows in which y1 and y0 are in different liquidity traps
 pbalance(droprow,:) = []
 
-
 /////////////////////////////////////////////////////////////////
 // COMMENT THE CODE BELOW !!!IN!!! IF IT'S THE FIRST YOU'RE RUNNING THAT
 
@@ -215,32 +207,3 @@ end
 save mul_file mul_various
 save pbalance_file pbalance_various
 save x_file x
-
-
-/////////////////////////////////////////////////////////////////
-// gdp = zeros(size(A,3),1);
-// for i = 1:size(A,3)
-//
-// 	gdp(i) = A(10, 2, i);
-//
-// end;
-//
-// outgap = zeros(size(A,3),1);
-// for i = 1:size(A,3)
-//
-// 	outgap(i) = A(1, 2, i);
-//
-// end;
-
-// I have tried it with three different definitions of "Government Debt to Actual GDP", none of which has worked out.
-// p = rdivide(debtgov,gdp);
-//
-// p =	rdivide(debtgov, outgap);
-//
-// p = debtgov;
-//
-// plot(20 * x(273:end), p(273:end));
-// xlabel('% Change in Govt Spend (Share of GDP)');
-// ylabel('Government Debt to Actual GDP');
-// xlim([0 12]);
-// ylim([0 1]);
