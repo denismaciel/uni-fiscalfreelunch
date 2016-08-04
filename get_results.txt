@@ -1,6 +1,0 @@
-%%% Code to get quickly get important from Dynare simulations %%%
-
-
-% Calculates the duration of liquidity trap
-liqduration = sum(oo_.endo_simul(3,1:end) == -ibar); 
-
