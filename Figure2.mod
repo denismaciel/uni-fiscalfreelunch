@@ -72,10 +72,10 @@ set(gca,'fontsize',14);
 xlabel('Quarters');
 // set(gca,'Ylim',[-5,10]);                                                                  //activate for '5 Quarter Price Contracts'
 // set(gca,'YTick',[-5:5:10]);                                                               //activate for '5 Quarter Price Contracts'
-// set(gca, 'YTickLabel', '-5 |0 |5 |10 ');                                                  //activate for '5 Quarter Price Contracts'
+// set(gca, 'YTickLabel', {'-5' ,'0' ,'5' ,'10' });                                                  //activate for '5 Quarter Price Contracts'
 set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20]);
-set(gca,'XTickLabel','0|4|8|12|16');
+set(gca,'XTickLabel',{'0' ,'4' ,'8' ,'12' ,'16' });
 text('String','5 Quarter Price Contracts','Units','normalized', ...                       //change to 'xx Quarter Price Contracts'
      'Position',[1.15 1.15],...
      'FontSize',20,'FontWeight','bold','HorizontalAlignment','center');
@@ -89,11 +89,11 @@ title('Output Gap', 'FontSize',18);
 set(gca,'fontsize',14);
 // set(gca,'Ylim',[-10,5]);                                                                 //activate for '5 Quarter Price Contracts'
 // set(gca,'YTick',[-10:5:5]);                                                              //activate for '5 Quarter Price Contracts'
-// set(gca, 'YTickLabel', '-10 |-5 |0 |5 ')                                                 //activate for '5 Quarter Price Contracts'
+// set(gca, 'YTickLabel', {'-10' ,'-5' ,'0' ,'5' })                                                 //activate for '5 Quarter Price Contracts'
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20]);
-set(gca,'XTickLabel','0|4|8|12|16');
+set(gca,'XTickLabel',{'0' ,'4' ,'8' ,'12' ,'16' });
 
 
 //Plotting Inflation
@@ -105,11 +105,11 @@ title('Inflation','FontSize',18);
 set(gca,'fontsize',14);
 // set(gca,'Ylim',[-25,5]);
 // set(gca,'YTick',[-25:5:5]);
-// set(gca, 'YTickLabel', ' |-20 |-15 |-10 |-5 |0 |5 ')
+// set(gca, 'YTickLabel',  {'-20' ,'-15' ,'-10','-5' ,'0' ,'5' })
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20]);
-set(gca,'XTickLabel','0|4|8|12|16');
+set(gca,'XTickLabel',{'0' ,'4' ,'8' ,'12' ,'16' });
 xlabel('Quarters');
 legend('Both shocks', 'Taste shock only', 'Government only','location','SouthEast');
 
@@ -123,11 +123,11 @@ title('Government Debt/GDP', 'FontSize',18);
 set(gca,'fontsize',14);
 // set(gca,'Ylim',[-1,10]);
 // set(gca,'YTick',[0:10]);
-// set(gca, 'YTickLabel', '0 | |2 | |4 | |6 | |8 | |10 ')
+// set(gca, 'YTickLabel', {'0' , '2' ,'4' ,'6' ,'8' ,'10' })
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20]);
-set(gca,'XTickLabel','0|4|8|12|16');
+set(gca,'XTickLabel',{'0' ,'4' ,'8' ,'12' ,'16' });
 
 
 //Some interesting calculations

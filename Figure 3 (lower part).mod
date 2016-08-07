@@ -17,7 +17,7 @@ set(gca,'YTick',[0:0.2:0.8]);
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',16)
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
-set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
+set(gca,'XTickLabel', {'-10' ,'-5' ,'0' ,'5' ,'10' });
 hold off;
 
 // Figure 3 'Government Spending Mutliplier with Alternative Price Contract Durations'
@@ -32,7 +32,7 @@ ylabel(gca,'Government Spending Multiplier','FontSize',16);
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',16)
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
-set(gca,'XTickLabel','-10 |-5 |0 |5 |10');
+set(gca,'XTickLabel', {'-10' ,'-5' ,'0' ,'5' ,'10' });
 hold off;
 
 // Figure 3 'Government Debt to Actual GDP No Inflation Response'
@@ -45,7 +45,7 @@ set(gca,'YTick',[0:0.2:1]);
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',16)
 set(gca,'Xlim',[0,0.55]);
 set(gca,'XTick',[0:0.1:0.5]);
-set(gca,'XTickLabel','0 |2 |4 |6 |8 |10 ');
+set(gca,'XTickLabel', {'0' , '2' ,'4' ,'6' ,'8' ,'10' });
 hold off;
 
 // Figure 3 'Government Debt to Acutal GDP with Alternative Price Contract Durations'
@@ -62,7 +62,7 @@ set(gca,'YTick',[-1:0.5:0.5]);
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',16)
 set(gca,'Xlim',[0,0.55]);
 set(gca,'XTick',[0:0.1:0.5]);
-set(gca,'XTickLabel','0 |2 |4 |6 |8 |10 ');
+set(gca,'XTickLabel', {'0' , '2' ,'4' ,'6' ,'8' ,'10' });
 hold off;
 xlabel('% Change in Govt Spend (Share of GDP)')
 ylabel('Government Debt to Actual GDP');

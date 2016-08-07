@@ -51,10 +51,10 @@ title('Negative Taste Shock and Fiscal Response','fontweight','bold','FontSize',
 set(gca,'fontsize',18);
 set(gca,'Ylim',[-10,0]);
 set(gca,'YTick',[-10:0]);
-set(gca, 'YTickLabel', '-10 | | | | |-5 |-i | | | |0 ');
+set(gca, 'YTickLabel', {'-10' ,'','','','','-5' ,'-i' ,'','','','0' });
 set(gca,'Xlim',[1,12]);
 set(gca,'XTick',[2:4:12]);
-set(gca,'XTickLabel','0|4|8|12');
+set(gca,'XTickLabel', {'0' ,'4' ,'8' ,'12' });
 xlabel('Quarters');
 legend(' Potential real rate (taste shock only)',' Nominal interest rate (taste shock only)', ' Pot real rate -1% g(t) increase',' Pot real rate -2% g(t) increase','location','SouthEast');
 

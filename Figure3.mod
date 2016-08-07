@@ -57,7 +57,7 @@ figure;
 	xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',12)
 	set(gca,'Xlim',[-0.55,0.55]);
 	set(gca,'XTick',[-0.5:0.25:0.5]);
-	set(gca,'XTickLabel', {'-10' , '-5' , '0', '5' , '10'});
+	set(gca,'XTickLabel', {'-10' ,'-5' ,'0' ,'5' ,'10' });
 hold off;
 
 
@@ -142,7 +142,7 @@ set(gca,'YTick',[0:0.2:0.8]);                                                  /
 xlabel(gca,'% Change in Govt Spend (Share of GDP)','FontSize',16)
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
-set(gca,'XTickLabel', {'-10' , '-5' , '0', '5' , '10'});
+set(gca,'XTickLabel', {'-10' ,'-5' ,'0' ,'5' ,'10' });
 hold off;
 
 
