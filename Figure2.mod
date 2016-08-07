@@ -67,42 +67,50 @@ subplot(2,2,1)
 plot(2:20, 400*irfs_gov1(11,2:20), 'g',   'linewidth',3);hold on;
 plot(2:20, 400*irfs_gov2(11,2:20), 'b--', 'linewidth',3);hold on;
 plot(2:20, 400*(irfs_gov1(11,2:20) - irfs_gov2(11,2:20)), 'r-.', 'linewidth',3);
-title('Real Interest Rate', 'FontSize',14);
-xlabel ('Quarters');
+title('Real Interest Rate', 'FontSize',18);
+set(gca,'fontsize',14);
+xlabel('Quarters');
+// set(gca,'Ylim',[-5,10]);                                                                  //activate for '5 Quarter Price Contracts'
+// set(gca,'YTick',[-5:5:10]);                                                               //activate for '5 Quarter Price Contracts'
+// set(gca, 'YTickLabel', '-5 |0 |5 |10 ');                                                  //activate for '5 Quarter Price Contracts'
 set(gca,'Xlim',[1,20]);
-set(gca,'XTick',[2:4:20])
-set(gca,'XTickLabel','0|4|8|12|16')
-xlabel('Quarters','FontSize',12)
-text('String','No Inflation Response','Units','normalized', ...                          //change to 'xx Quarter Price Contracts'
+set(gca,'XTick',[2:4:20]);
+set(gca,'XTickLabel','0|4|8|12|16');
+text('String','5 Quarter Price Contracts','Units','normalized', ...                       //change to 'xx Quarter Price Contracts'
      'Position',[1.15 1.15],...
-     'FontSize',18,'FontWeight','bold','HorizontalAlignment','center');
+     'FontSize',20,'FontWeight','bold','HorizontalAlignment','center');
 
 //Plotting Output Gap
 subplot(2,2,2)
 plot(2:20, 100*irfs_gov1(1,2:20), 'g',  'linewidth',3);hold on;
 plot(2:20, 100*irfs_gov2(1,2:20), 'b--','linewidth',3);hold on;
 plot(2:20, 100*(irfs_gov1(1,2:20) - irfs_gov2(1,2:20)), 'r-.', 'linewidth',3);
-title('Output Gap', 'FontSize',14);
-xlabel ('Quarters');
+title('Output Gap', 'FontSize',18);
+set(gca,'fontsize',14);
 // set(gca,'Ylim',[-10,5]);                                                                 //activate for '5 Quarter Price Contracts'
 // set(gca,'YTick',[-10:5:5]);                                                              //activate for '5 Quarter Price Contracts'
 // set(gca, 'YTickLabel', '-10 |-5 |0 |5 ')                                                 //activate for '5 Quarter Price Contracts'
+xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
-set(gca,'XTick',[2:4:20])
-set(gca,'XTickLabel','0|4|8|12|16')
-xlabel('Quarters','FontSize',12)
+set(gca,'XTick',[2:4:20]);
+set(gca,'XTickLabel','0|4|8|12|16');
+
 
 //Plotting Inflation
 subplot(2,2,3)
 plot(2:20, 400*irfs_gov1(2,2:20), 'g',   'linewidth',3);hold on;
 plot(2:20, 400*irfs_gov2(2,2:20), 'b--', 'linewidth',3);hold on;
 plot(2:20, 400*(irfs_gov1(2,2:20) - irfs_gov2(2,2:20)), 'r-.', 'linewidth',3);
-title('Inflation','FontSize',14);
+title('Inflation','FontSize',18);
+set(gca,'fontsize',14);
+// set(gca,'Ylim',[-25,5]);
+// set(gca,'YTick',[-25:5:5]);
+// set(gca, 'YTickLabel', ' |-20 |-15 |-10 |-5 |0 |5 ')
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
-set(gca,'XTick',[2:4:20])
-set(gca,'XTickLabel','0|4|8|12|16')
-xlabel('Quarters','FontSize',12)
+set(gca,'XTick',[2:4:20]);
+set(gca,'XTickLabel','0|4|8|12|16');
+xlabel('Quarters');
 legend('Both shocks', 'Taste shock only', 'Government only','location','SouthEast');
 
 //Plotting Government Debt/GDP
@@ -111,15 +119,16 @@ plot(25*debtg(1:40));
 plot(2:20, 25*irfs_gov1(6,2:20), 'g',   'linewidth',3);hold on;
 plot(2:20, 25*irfs_gov2(6,2:20), 'b--', 'linewidth',3);hold on;
 plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.', 'linewidth',3);
-title('Government Debt/GDP', 'FontSize',14);
-set(gca,'Ylim',[-1,10]);
-set(gca,'YTick',[0:10]);
-set(gca, 'YTickLabel', '0 | |2 | |4 | |6 | |8 | |10 ')
+title('Government Debt/GDP', 'FontSize',18);
+set(gca,'fontsize',14);
+// set(gca,'Ylim',[-1,10]);
+// set(gca,'YTick',[0:10]);
+// set(gca, 'YTickLabel', '0 | |2 | |4 | |6 | |8 | |10 ')
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
-set(gca,'XTick',[2:4:20])
-set(gca,'XTickLabel','0|4|8|12|16')
-xlabel('Quarters','FontSize',12)
+set(gca,'XTick',[2:4:20]);
+set(gca,'XTickLabel','0|4|8|12|16');
+
 
 //Some interesting calculations
 //Calculate positive output of government spending shock on debt
