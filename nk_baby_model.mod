@@ -36,16 +36,18 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip     =  0.8    ;        // Calvo price parameter - stickiness and contract duration: 5 quarter duration
+xip     =  0.8    ;        // Calvo price parameter
 // xip  =  1      ;        // No inflation responses
-// xip  =  0.9    ;        // 10 quarter mean durationvof price contracts
+// xip  =  0.9    ;        // 10 quarter mean duration of price contracts
 //xip   =  0.8    ;        // 5  quarter mean duration of price contracts
 // xip  =  0.75   ;        // 4  quarter mean duration of price contracts
 //xip   =  0.667  ;        // 3  quarter mean duration of price contracts
 //xip   =  0      ;        // flexible prices
 
-gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap (Werte aus anderem Model Jesper 1000/ standard value 0.2) 66.15 Fig2 & Fig3 5&4qurt & Fig 1a&b 5 qurt / 15 Fig2 sticky prices / 1.1 Fig3 sticky prices
-gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation (Werte aus anderem Model Jesper 1000/standard value 1.5) 66.15 Fig2 & Fig3 5&4qurt Fig 1a&b 5 qurt
+gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap
+// gam_xgap=  15     ;     // coefficient on output gap: Taylor rule feedback on output gap     Figure 2 "No Inflation Reponse"
+// gam_xgap=  1.1    ;     // coefficient on output gap: Taylor rule feedback on output gap     Figure 3 "No Inflation Reponse"
+gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
 
@@ -53,9 +55,10 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share: (1-alpha) = capital share
 
-sig_con =  29.2   ;        // Std of consumption taste shock    29.2 F1a&b 5qurt & Fig3 4qurt & Fig2 sticky prices 5qurt / 30.2 Fig3 5qurt / 32 Fig3 sticky prices
-sig_gov =  0.05   ;        // Std of government spending shock   (0,01*5 to get government spending increase of 1% GDP (shrgy=0.2))
-
+sig_con =  29.2   ;        // Std of consumption taste shock    Figure 1a/ Figure 1b/ Figure 2 "No Inflation Response"/ Figure 2 "5 Quarter Price Contracts"
+// sig_con =  30.2   ;     // Std of consumption taste shock    Figure 3 "Alternative Price Contract Durations"
+// sig_con =  29.2   ;     // Std of consumption taste shock    Figure 3 "No Inflation Response"
+sig_gov =  0.05   ;        // Std of government spending shock
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
 
@@ -71,7 +74,7 @@ phi_mc= chi/(1-alpha) + 1/sigma_hat + alpha/(1-alpha);
 
 //phi_mc = lam_mrs+lam_mpl;
 //lam_mrs = chi/(1-alpha) + 1/sigma_hat;        // slope of MRS schedule (how supply real wage varies with output -
-                                                // Fish elasticity of labor supply - interest sensitivity of aggregate demand
+                                                // Frisch elasticity of labor supply - interest sensitivity of aggregate demand
 //lam_mpl = alpha/(1-alpha);                    // slope of MPL schedule (how demand real wage varies with output in abs value)
                                                 // labor share of production
 
@@ -154,12 +157,12 @@ steady ;
 check;
 
 
-// @#include "Figure1a.mod"
+@#include "Figure1a.mod"
 
 // @#include "Figure1b.mod"
 
 // @#include  "Figure2.mod"
 
-@#include "Figure3.mod"
+// @#include "Figure3.mod"
 
 //@#include "govmultiplier.mod"

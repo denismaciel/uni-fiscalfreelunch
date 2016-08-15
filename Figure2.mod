@@ -45,7 +45,7 @@ irfs_gov2 = oo_.endo_simul;
 
 
 ///////////////////////////////////////////////////////////////////
-//Plotting dynamic effects of the taste shock νt
+//Plotting dynamic effects of the taste shock
 figure;
 //looping over all variables
 for jj=1:1:11
