@@ -36,8 +36,8 @@ chi     =  2.5    ;        // inverse of Frisch elasticity of labor supply
 shrgy   =  0.2    ;        // government share of steady-state output
 nuc     =  0.01   ;        // scale parameter on the consumption taste shock
 
-xip     =  0.8    ;        // Calvo price parameter
-// xip  =  1      ;        // No inflation responses
+// Calvo price parameter
+xip  =  1      ;        // No inflation responses
 // xip  =  0.9    ;        // 10 quarter mean duration of price contracts
 //xip   =  0.8    ;        // 5  quarter mean duration of price contracts
 // xip  =  0.75   ;        // 4  quarter mean duration of price contracts
@@ -157,12 +157,12 @@ steady ;
 check;
 
 
-@#include "Figure1a.mod"
+// @#include "Figure1a.mod"
 
 // @#include "Figure1b.mod"
 
 // @#include  "Figure2.mod"
 
-// @#include "Figure3.mod"
+@#include "Figure3.mod"
 
 //@#include "govmultiplier.mod"
