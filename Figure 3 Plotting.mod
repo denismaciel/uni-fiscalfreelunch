@@ -12,7 +12,7 @@ title('No Inflation Response','fontweight','bold','FontSize',20)
 set(gca,'fontsize',18);
 set(gca,'Ylim',[0,0.8]);
 set(gca,'YTick',[0:0.2:0.8]);
-ylabel(gca,'Government Spending Multiplier','FontSize',16);
+ylabel(gca,'Government Spending Multiplier');
 set(gca,'Xlim',[-0.55,0.55]);
 set(gca,'XTick',[-0.5:0.25:0.5]);
 set(gca,'XTickLabel', {'-10' ,'-5' ,'0' ,'5' ,'10' });
