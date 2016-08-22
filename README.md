@@ -4,7 +4,7 @@
 
 
 ````
-The document provides a short explanation on how to run the Dynare Code to replicate the results of Erceg and Linde (2014):
+The document provides a short explanation on how to run the Dynare Code to replicate the results of Erceg and Linde (2014). The code was run with Dynare 4.03 and MATLAB_R2015b for Mac.
 ````
 
 
