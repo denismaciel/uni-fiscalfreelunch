@@ -44,9 +44,8 @@ xip  =  1      ;        // No inflation responses
 //xip   =  0.667  ;        // 3  quarter mean duration of price contracts
 //xip   =  0      ;        // flexible prices
 
-gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap
-// gam_xgap=  15     ;     // coefficient on output gap: Taylor rule feedback on output gap     Figure 2 "No Inflation Reponse"
-// gam_xgap=  1.1    ;     // coefficient on output gap: Taylor rule feedback on output gap     Figure 3 "No Inflation Reponse"
+// gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap
+gam_xgap=  15     ;     // coefficient on output gap: Taylor rule feedback on output gap     Figure 2 "No Inflation Reponse"
 gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
@@ -55,16 +54,14 @@ phi_tax =  0.01   ;        // tax rule parameter
 
 thetap  =  0.7    ;        // steady-state labor share: (1-alpha) = capital share
 
-sig_con =  29.2   ;        // Std of consumption taste shock    Figure 1a/ Figure 1b/ Figure 2 "No Inflation Response"/ Figure 2 "5 Quarter Price Contracts"
-// sig_con =  30.2   ;     // Std of consumption taste shock    Figure 3 "Alternative Price Contract Durations"
-// sig_con =  29.2   ;     // Std of consumption taste shock    Figure 3 "No Inflation Response"
+sig_con =  29.2   ;        // Std of consumption taste shock
 sig_gov =  0.05   ;        // Std of government spending shock
 
 rbar = (1/beta) -1  ;      // steady state real interest rate
 
 //maxoperator ZLB
 pibar = 1.005;
-ibar = (pibar/beta) - 1;    //nominal nominal interest rate - duration of the liquidity trap depends solely on how lon rpotV remains below -ibar
+ibar = (pibar/beta) - 1;    //nominal nominal interest rate - duration of the liquidity trap depends solely on how long rpotV remains below -ibar
 
 //sigma_hat
 sigma_hat = sigma*(1-shrgy)*(1-nuc);            // sensitivity of the output gap to the real interest rate
@@ -161,8 +158,8 @@ check;
 
 // @#include "Figure1b.mod"
 
-// @#include  "Figure2.mod"
+@#include  "Figure2.mod"
 
-@#include "Figure3.mod"
+// @#include "Figure3.mod"
 
 //@#include "govmultiplier.mod"
