@@ -5,7 +5,7 @@ load x_file.mat
 shrgy = 0.2
 
 
-// Figure 3 'Government Spending Mutliplier with Alternative Price Contract Durations'
+% Figure 3 'Government Spending Mutliplier with Alternative Price Contract Durations'
 figure;
 subplot(1,1,1)
 plot(x(1:length(mul_various)), mul_various(:,:,2), 'g --', 'linewidth',5); hold on;
@@ -21,7 +21,7 @@ xlabel(gca,'% Change in Govt Spend (Share of GDP)')
 legend('10 qtr contracts','5 qtr contracts','4 qtr contracts','location','NorthEast');
 hold off;
 
-// Figure 3 'Government Debt to Actual GDP No Inflation Response'
+% Figure 3 'Government Debt to Actual GDP No Inflation Response'
 figure;
 plot(x(1:length(pbalance_various)), pbalance_various(:,:,1), 'b', 'linewidth',5);
 title('No Inflation Response','fontweight','bold','FontSize',20)
@@ -35,7 +35,7 @@ set(gca,'XTickLabel', {'0' , '2' ,'4' ,'6' ,'8' ,'10' });
 xlabel(gca,'% Change in Govt Spend (Share of GDP)')
 hold off;
 
-// Figure 3 'Government Debt to Acutal GDP with Alternative Price Contract Durations'
+% Figure 3 'Government Debt to Acutal GDP with Alternative Price Contract Durations'
 figure;
 subplot(1,1,1)
 plot(x(1:length(pbalance_various)), pbalance_various(:,:,2), 'g --', 'linewidth',5); hold on;
