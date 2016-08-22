@@ -41,8 +41,6 @@ xip  =  1      ;        // No inflation responses
 // xip  =  0.9    ;        // 10 quarter mean duration of price contracts
 //xip   =  0.8    ;        // 5  quarter mean duration of price contracts
 // xip  =  0.75   ;        // 4  quarter mean duration of price contracts
-//xip   =  0.667  ;        // 3  quarter mean duration of price contracts
-//xip   =  0      ;        // flexible prices
 
 
 // gam_xgap=  15    ;     // coefficient on output gap: Taylor rule feedback on output gap     [only for Figure 2 "No Inflation Reponse"]
