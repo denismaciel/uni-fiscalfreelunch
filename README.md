@@ -1,6 +1,6 @@
 ##Erceg and Linde(2014): Is there a fiscal free lunch in a liquidity trap?
 ##Denis Maciel and Tobias Mueller
-August 22, 2016
+````August 22, 2016````
 
 ````
 The document provides a short explication on how to run the Dynare Code the get the results of the replication of Erceg and Linde (2014):
