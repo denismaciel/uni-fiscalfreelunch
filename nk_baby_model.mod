@@ -162,5 +162,3 @@ check;
 @#include  "Figure2.mod"
 
 // @#include "Figure3.mod"
-
-//@#include "govmultiplier.mod"

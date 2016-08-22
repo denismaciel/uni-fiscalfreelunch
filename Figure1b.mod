@@ -47,7 +47,7 @@ end
 
 
 //Plotting Figure 1b to show the liquidity trap duration and the path of the policy rate
-plot(400 * rpot, liqduration, 'b',  'linewidth',5);
+plot(400 * rpot, liqduration, 'b',  'linewidth',5);                                                     //change plot(..) to scatter(..) to get the scatter plot
 title('Liquidity Trap Duration and Potential Real Interest Rate','fontweight','bold','FontSize',20);
 set(gca,'fontsize',18);
 ylabel('Liquidity trap duration');
