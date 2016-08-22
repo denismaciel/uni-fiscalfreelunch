@@ -105,7 +105,7 @@ title('Inflation','FontSize',18);
 set(gca,'fontsize',14);
 set(gca,'Ylim',[-25,5]);
 set(gca,'YTick',[-25:5:5]);
-set(gca, 'YTickLabel',  {'-20' ,'-15' ,'-10','-5' ,'0' ,'5' })
+set(gca, 'YTickLabel',  {'' ,'-20' ,'-15' ,'-10','-5' ,'0' ,'5' })
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
 set(gca,'XTick',[2:4:20]);
@@ -122,7 +122,7 @@ plot(2:20, 25*(irfs_gov1(6,2:20) - irfs_gov2(6,2:20)), 'r-.', 'linewidth',3);
 title('Government Debt/GDP', 'FontSize',18);
 set(gca,'fontsize',14);
 set(gca,'Ylim',[-1,10]);
-set(gca,'YTick',[0:10]);
+set(gca,'YTick',[0:2:10]);
 set(gca, 'YTickLabel', {'0' , '2' ,'4' ,'6' ,'8' ,'10' })
 xlabel ('Quarters');
 set(gca,'Xlim',[1,20]);
