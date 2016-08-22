@@ -4,21 +4,6 @@ load x_file.mat
 
 shrgy = 0.2
 
-// Figure 3 'Government Spending Multiplier No Inflation Response'
-figure;
-plot(liqmul.shock, liqmul.multiplier, 'b',    'linewidth',5); hold on;
-plot(liqmul.shock, liqmul.averagemul, 'g -.', 'linewidth',5);
-title('No Inflation Response','fontweight','bold','FontSize',20)
-set(gca,'fontsize',18);
-set(gca,'Ylim',[0,0.8]);
-set(gca,'YTick',[0:0.2:0.8]);
-ylabel(gca,'Government Spending Multiplier');
-set(gca,'Xlim',[-0.55,0.55]);
-set(gca,'XTick',[-0.5:0.25:0.5]);
-set(gca,'XTickLabel', {'-10' ,'-5' ,'0' ,'5' ,'10' });
-xlabel(gca,'% Change in Govt Spend (Share of GDP)')
-legend('Marginal multiplier','Average multiplier','location','SouthEast');
-hold off;
 
 // Figure 3 'Government Spending Mutliplier with Alternative Price Contract Durations'
 figure;
