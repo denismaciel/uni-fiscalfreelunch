@@ -45,8 +45,8 @@ xip  =  1      ;        // No inflation responses
 //xip   =  0      ;        // flexible prices
 
 
-gam_xgap=  15     ;     // coefficient on output gap: Taylor rule feedback on output gap     [only for Figure 2 "No Inflation Reponse"]
-// gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap
+// gam_xgap=  15    ;     // coefficient on output gap: Taylor rule feedback on output gap     [only for Figure 2 "No Inflation Reponse"]
+gam_xgap=  66.15  ;        // coefficient on output gap: Taylor rule feedback on output gap
 gam_pi  =  66.15  ;        // coefficient on inflation: Taylor rule feedback on expected inflation
 
 rho     =  0.1    ;        // AR(1) natural rate (preference and government shock)
